@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "538557779597",
+    "firebase_url": "https://petrays-51d35.firebaseio.com",
+    "project_id": "petrays-51d35",
+    "storage_bucket": "petrays-51d35.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:538557779597:android:44477bd806a8e597",
+        "android_client_info": {
+          "package_name": "com.example.sunimali.petrays"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "538557779597-q40ru8cmhb0jf5ir3gem9afph8fme674.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sunimali.petrays",
+            "certificate_hash": "1d209781af30d1020762d7f8639891f4c54b2eb9"
+          }
+        },
+        {
+          "client_id": "538557779597-n3evf499gh5ca2oko50u43av3a98mngc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2pDQWBZY3ZbIYrcevFVkjitWb06VWYTg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "538557779597-n3evf499gh5ca2oko50u43av3a98mngc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
