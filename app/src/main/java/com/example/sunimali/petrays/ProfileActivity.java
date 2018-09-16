@@ -9,8 +9,8 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-            Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
-            setSupportActionBar(myToolbar);
+    //        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+//            setSupportActionBar(myToolbar);
             setContentView(R.layout.activity_profile);
         }
 

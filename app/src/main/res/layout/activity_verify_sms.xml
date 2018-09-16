@@ -15,7 +15,6 @@
         android:layout_marginStart="56dp"
         android:layout_marginTop="57dp"
         android:text="Verifying the phone number"
-        android:textColor="?attr/actionBarTheme"
         app:layout_constraintBottom_toTopOf="@+id/textView12"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,39 +24,63 @@
         android:id="@+id/textView12"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="356dp"
+        android:layout_marginBottom="75dp"
         android:layout_marginEnd="42dp"
         android:layout_marginStart="42dp"
+        android:layout_marginTop="164dp"
         android:text="We will be verifying the phone number using code via send SMS. "
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/editTextCode"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText9"
+        android:id="@+id/editTextCode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="28dp"
         android:ems="10"
         android:inputType="number"
-        tools:layout_editor_absoluteX="84dp"
-        tools:layout_editor_absoluteY="286dp" />
+        app:layout_constraintBottom_toTopOf="@+id/textView18"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
     <TextView
         android:id="@+id/textView18"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="52dp"
         android:text="6-Digit code"
-        tools:layout_editor_absoluteX="163dp"
-        tools:layout_editor_absoluteY="360dp" />
+        app:layout_constraintBottom_toTopOf="@+id/nextbutton2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextCode" />
 
     <Button
         android:id="@+id/nextbutton2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="88dp"
         android:text="Next"
         android:textAllCaps="?android:attr/windowOverscan"
         android:textColor="@android:color/white"
-        tools:layout_editor_absoluteX="148dp"
-        tools:layout_editor_absoluteY="435dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/resendbutton"
+        app:layout_constraintTop_toBottomOf="@+id/textView18" />
+
+    <Button
+        android:id="@+id/resendbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="54dp"
+        android:text="Resend"
+        android:textAllCaps="?android:attr/windowOverscan"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toStartOf="@+id/nextbutton2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView18" />
 </android.support.constraint.ConstraintLayout>

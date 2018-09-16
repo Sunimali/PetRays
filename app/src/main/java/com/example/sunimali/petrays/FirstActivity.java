@@ -25,7 +25,7 @@ public class FirstActivity extends AppCompatActivity {
         });
 
         Button button = (Button)findViewById(R.id.signInbutton);
-        textView.setOnClickListener(new View.OnClickListener() {
+        button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // go to signIn page
                 startActivity(new Intent(FirstActivity.this,SignInActivity.class));
