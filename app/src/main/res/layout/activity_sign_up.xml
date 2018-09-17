@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/editTextName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="58dp"
@@ -28,8 +28,8 @@
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/textView7"
-        app:layout_constraintEnd_toEndOf="@+id/editText4"
-        app:layout_constraintStart_toStartOf="@+id/editText4"
+        app:layout_constraintEnd_toEndOf="@+id/editTextPassword"
+        app:layout_constraintStart_toStartOf="@+id/editTextPassword"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -43,14 +43,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/editTextPassword"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="46dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView7"
-        app:layout_constraintEnd_toEndOf="@+id/editText6"
-        app:layout_constraintStart_toStartOf="@+id/editText6" />
+        app:layout_constraintEnd_toEndOf="@+id/editTextaddress"
+        app:layout_constraintStart_toStartOf="@+id/editTextaddress" />
 
     <TextView
         android:id="@+id/textView8"
@@ -58,7 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="Address :"
-        app:layout_constraintBottom_toBottomOf="@+id/editText6"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextaddress"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -66,24 +66,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="@+id/editText7"
+        android:text="Email"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextEmail"
         app:layout_constraintStart_toStartOf="parent"
         tools:text="Email :" />
 
     <EditText
-        android:id="@+id/editText6"
+        android:id="@+id/editTextaddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="39dp"
         android:ems="10"
         android:inputType="textPostalAddress"
-        app:layout_constraintEnd_toEndOf="@+id/editText7"
-        app:layout_constraintStart_toStartOf="@+id/editText7"
-        app:layout_constraintTop_toBottomOf="@+id/editText4" />
+        app:layout_constraintEnd_toEndOf="@+id/editTextEmail"
+        app:layout_constraintStart_toStartOf="@+id/editTextEmail"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPassword" />
 
     <EditText
-        android:id="@+id/editText7"
+        android:id="@+id/editTextEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="41dp"
@@ -91,7 +91,7 @@
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="@+id/editTextmobile"
         app:layout_constraintStart_toStartOf="@+id/editTextmobile"
-        app:layout_constraintTop_toBottomOf="@+id/editText6" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextaddress" />
 
     <EditText
         android:id="@+id/editTextmobile"
@@ -118,13 +118,14 @@
         android:id="@+id/SignUpbutton"
         android:layout_width="148dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="35dp"
+        android:layout_marginBottom="24dp"
         android:layout_marginEnd="99dp"
         android:layout_marginStart="94dp"
         android:text="Sign  Up"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/editTextmobile"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textView10"
         tools:textAllCaps="?android:attr/windowOverscan" />
 </android.support.constraint.ConstraintLayout>

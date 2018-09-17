@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".FirstActivity"></activity>
+        <activity android:name=".FirstActivity" />
         <activity
             android:name=".SignInActivity"
             android:label="@string/title_activity_sign_in" />
@@ -19,6 +19,15 @@
         <activity android:name=".toolbarLayoutActivity" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".HomeActivity" />
+        <activity android:name=".AppointmentHistoryActivity"/>
+        <activity android:name=".AppointmentMenu"/>
+        <activity android:name=".deleteViewEditPetProfile"/>
+        <activity android:name=".editPetProfile"/>
+        <activity android:name=".HomeVisitRequest1"/>
+        <activity android:name=".homeVisitRequest2"/>
+        <activity android:name=".MyPets"/>
+        <activity android:name=".Payment"/>
+        <activity android:name=".viewPetProfile"/>
         <activity
             android:name=".WelcomeActivity"
             android:label="@string/title_activity_welcome">
@@ -28,6 +37,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".appointment_history" />
+        <activity android:name=".appointment_menu" />
+        <activity android:name=".delete_view_edit_pet_profile" />
+        <activity android:name=".edit_pet_profile" />
+        <activity android:name=".home_visit_request1"></activity>
     </application>
 
 </manifest>

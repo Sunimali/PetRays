@@ -3,5 +3,24 @@
     <string name="title_activity_sign_in">SignInActivity</string>
     <string name="title_activity_welcome">WelcomeActivity</string>
     <string name="signup"><u>Sign Up</u>.</string>
+
+
+    <string name="title_activity_view_pet_profile">ViewPetProfile</string>
+    <string name="linktoDoccalendar"><a href="">View Doctor's Availability</a></string>
+    <string-array name="breed">
+        <item>German Shepherd</item>
+        <item>Golden retriever</item>
+        <item>Alaskan</item>
+        <item>Bull dog</item>
+        <item>Boxer</item>
+    </string-array>
+    <string-array name="species">
+        <item>Dog</item>
+        <item>Cat</item>
+        <item>Bird</item>
+        <item>Reptiles</item>
+        <item>Mammals</item>
+    </string-array>
+
 </resources>
 
