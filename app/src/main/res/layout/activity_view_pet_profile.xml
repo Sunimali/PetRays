@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".viewPetProfile">
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="190dp"
+        android:text="Species :"
+        android:textColor="@color/textColorFont"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginBottom="28dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="27dp"
+        android:text="Name :"
+        android:textColor="@color/textColorFont"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView11"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/editText13" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="84dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="31dp"
+        android:text="Breed :"
+        android:textColor="@color/textColorFont"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/static_spinner"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+    <Spinner
+        android:id="@+id/static_spinner"
+        android:layout_width="0dp"
+        android:layout_height="41dp"
+        android:layout_marginBottom="57dp"
+        android:layout_marginEnd="13dp"
+        android:layout_marginTop="56dp"
+        app:layout_constraintBottom_toBottomOf="@+id/editText15"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView13"
+        app:layout_constraintTop_toTopOf="@+id/spinner"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="27dp"
+        android:text="Age :"
+        android:textColor="@color/textColorFont"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Description :"
+        android:textColor="@color/textColorFont"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/editText11" />
+
+    <EditText
+        android:id="@+id/editText11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="17dp"
+        android:layout_marginTop="22dp"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText15" />
+
+    <EditText
+        android:id="@+id/editText13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="17dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton5" />
+
+    <EditText
+        android:id="@+id/editText15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="223dp"
+        android:layout_marginEnd="17dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imageButton5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/dog" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="0dp"
+        android:layout_height="37dp"
+        android:layout_marginBottom="96dp"
+        android:layout_marginTop="97dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView14"
+        app:layout_constraintEnd_toEndOf="@+id/editText13"
+        app:layout_constraintStart_toStartOf="@+id/editText13"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton5" />
+</android.support.constraint.ConstraintLayout>

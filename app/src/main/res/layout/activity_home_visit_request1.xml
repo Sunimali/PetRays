@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeVisitRequest1">
+
+    <EditText
+        android:id="@+id/editText3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="28dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        app:layout_constraintBottom_toTopOf="@+id/textView18"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="wrap_content"
+        android:layout_height="24dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="340dp"
+        android:text="Location :"
+        android:textColor="@color/textColorFont"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText3" />
+
+
+    <Button
+        android:id="@+id/buttonnextforpayment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="148dp"
+        android:background="@color/colorPrimaryDark"
+        android:text="Next"
+        android:textColor="@color/button_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="447dp" />
+
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="wrap_content"
+        android:layout_height="26dp"
+        android:text="Purpose:"
+        tools:layout_editor_absoluteX="52dp"
+        tools:layout_editor_absoluteY="113dp" />
+
+    <EditText
+        android:id="@+id/editText7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Purpose"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="152dp"
+        tools:layout_editor_absoluteY="92dp" />
+</android.support.constraint.ConstraintLayout>

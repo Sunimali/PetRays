@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".doctorInfo">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="100dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="22dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView29"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/icons8medicaldoctor64" />
+
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="23dp"
+        android:text="Address: 184 Old Kottawa Rd, Nugegoda 10100"
+        app:layout_constraintBottom_toTopOf="@+id/textView21"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView30" />
+
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="13dp"
+        android:text="Available Time :"
+        app:layout_constraintBottom_toTopOf="@+id/textView22"
+        app:layout_constraintStart_toStartOf="@+id/textView19"
+        app:layout_constraintTop_toBottomOf="@+id/textView19" />
+
+    <TextView
+        android:id="@+id/textView22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="14dp"
+        android:text="  Monday	10AM–2PM, 6–10PM"
+        app:layout_constraintBottom_toTopOf="@+id/textView23"
+        app:layout_constraintStart_toStartOf="@+id/textView21"
+        app:layout_constraintTop_toBottomOf="@+id/textView21" />
+
+    <TextView
+        android:id="@+id/textView23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:text="Tuesday	10AM–2PM, 6–10PM"
+        app:layout_constraintBottom_toTopOf="@+id/textView24"
+        app:layout_constraintStart_toStartOf="@+id/textView22"
+        app:layout_constraintTop_toBottomOf="@+id/textView22" />
+
+    <TextView
+        android:id="@+id/textView24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="11dp"
+        android:layout_marginStart="44dp"
+        android:text="Wednesday	10AM–2PM, 6–10PM"
+        app:layout_constraintBottom_toTopOf="@+id/textView25"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView23" />
+
+    <TextView
+        android:id="@+id/textView25"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="14dp"
+        android:layout_marginStart="3dp"
+        android:text="Thursday	10AM–2PM, 6–10PM"
+        app:layout_constraintBottom_toTopOf="@+id/textView26"
+        app:layout_constraintStart_toStartOf="@+id/textView24"
+        app:layout_constraintTop_toBottomOf="@+id/textView24" />
+
+    <TextView
+        android:id="@+id/textView26"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="11dp"
+        android:text="Friday	10AM–2PM, 6–10PM"
+        app:layout_constraintBottom_toTopOf="@+id/textView27"
+        app:layout_constraintStart_toStartOf="@+id/textView25"
+        app:layout_constraintTop_toBottomOf="@+id/textView25" />
+
+    <TextView
+        android:id="@+id/textView27"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginBottom="7dp"
+        android:text="Saturday	10AM–2PM, 6–10PM"
+        app:layout_constraintBottom_toTopOf="@+id/textView28"
+        app:layout_constraintStart_toStartOf="@+id/textView26"
+        app:layout_constraintTop_toBottomOf="@+id/textView26" />
+
+    <TextView
+        android:id="@+id/textView28"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="87dp"
+        android:text="Sunday	10AM–2PM, 6–10PM"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView27"
+        app:layout_constraintTop_toBottomOf="@+id/textView27" />
+
+    <TextView
+        android:id="@+id/textView29"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginBottom="11dp"
+        android:layout_marginEnd="3dp"
+        android:text="Mr.Sunil Fernando"
+        app:layout_constraintBottom_toTopOf="@+id/textView30"
+        app:layout_constraintEnd_toEndOf="@+id/textView30"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <TextView
+        android:id="@+id/textView30"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:text="Phone: 071 409 0010"
+        app:layout_constraintBottom_toTopOf="@+id/textView19"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView29" />
+
+</android.support.constraint.ConstraintLayout>

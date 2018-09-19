@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".deleteViewEditPetProfile">
+
+    <Button
+        android:id="@+id/buttoneditprofile"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="26dp"
+        android:background="@color/colorPrimary"
+        android:text="Edit Profile"
+        android:textColor="@color/button_text"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonViewProfile"
+        app:layout_constraintEnd_toEndOf="@+id/buttonViewProfile"
+        app:layout_constraintStart_toStartOf="@+id/buttonViewProfile"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton4"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/buttonViewProfile"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="15dp"
+        android:background="@color/colorPrimary"
+        android:text="View Profile"
+        android:textColor="@color/button_text"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/buttondelete"
+        app:layout_constraintEnd_toEndOf="@+id/buttondelete"
+        app:layout_constraintStart_toStartOf="@+id/buttondelete"
+        app:layout_constraintTop_toBottomOf="@+id/buttoneditprofile"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/buttondelete"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="111dp"
+        android:background="@color/colorPrimaryDark"
+        android:text="Delete Profile"
+        android:textColor="@color/button_text"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonViewProfile"
+        tools:ignore="MissingConstraints" />
+
+    <ImageButton
+        android:id="@+id/imageButton4"
+        android:layout_width="119dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="64dp"
+        android:layout_marginTop="56dp"
+        app:layout_constraintBottom_toTopOf="@+id/buttoneditprofile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/dog" />
+
+</android.support.constraint.ConstraintLayout>

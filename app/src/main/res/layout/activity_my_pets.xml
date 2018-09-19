@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MyPets">
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        android:layout_marginBottom="106dp"
+        android:layout_marginEnd="68dp"
+        android:layout_marginStart="68dp"
+        android:background="@android:color/background_dark"
+        android:text="Add New Pet"
+        android:textColor="@color/button_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imageButtondog"
+        android:layout_width="157dp"
+        android:layout_height="136dp"
+        app:srcCompat="@drawable/dog"
+        tools:layout_editor_absoluteX="124dp"
+        tools:layout_editor_absoluteY="119dp" />
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="98dp"
+        android:layout_height="52dp"
+        android:text="Woofy"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="163dp"
+        tools:layout_editor_absoluteY="294dp" />
+
+</android.support.constraint.ConstraintLayout>
