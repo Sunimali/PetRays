@@ -19,15 +19,16 @@
         <activity android:name=".toolbarLayoutActivity" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".HomeActivity" />
-        <activity android:name=".AppointmentHistoryActivity"/>
-        <activity android:name=".AppointmentMenu"/>
-        <activity android:name=".deleteViewEditPetProfile"/>
-        <activity android:name=".editPetProfile"/>
-        <activity android:name=".HomeVisitRequest1"/>
-        <activity android:name=".homeVisitRequest2"/>
-        <activity android:name=".MyPets"/>
-        <activity android:name=".Payment"/>
-        <activity android:name=".viewPetProfile"/>
+        <activity android:name=".AppointmentHistoryActivity" />
+        <activity android:name=".AppointmentMenuActivity" />
+        <activity android:name=".deleteViewEditPetProfileActivity" />
+        <activity android:name=".editPetProfileActivity" />
+        <activity android:name=".HomeVisitRequest1Activity" />
+        <activity android:name=".homeVisitRequest2Activity" />
+        <activity android:name=".MyPetsActivity" />
+        <activity android:name=".PaymentActivity" />
+        <activity android:name=".viewPetProfileActivity" />
+        <activity android:name=".doctorInfoActivity" />
         <activity
             android:name=".WelcomeActivity"
             android:label="@string/title_activity_welcome">
@@ -41,7 +42,7 @@
         <activity android:name=".appointment_menu" />
         <activity android:name=".delete_view_edit_pet_profile" />
         <activity android:name=".edit_pet_profile" />
-        <activity android:name=".home_visit_request1"></activity>
+        <activity android:name=".home_visit_request1" />
     </application>
 
 </manifest>

@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 
 public class HomeActivity extends AppCompatActivity {
@@ -19,7 +18,7 @@ public class HomeActivity extends AppCompatActivity {
         pets.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // go to pets page
-                startActivity(new Intent(HomeActivity.this,deleteViewEditPetProfile.class));
+                startActivity(new Intent(HomeActivity.this,deleteViewEditPetProfileActivity.class));
 
             }
         });
@@ -29,7 +28,7 @@ public class HomeActivity extends AppCompatActivity {
         appointments.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // go to appointments page
-                startActivity(new Intent(HomeActivity.this,AppointmentMenu.class));
+                startActivity(new Intent(HomeActivity.this,AppointmentMenuActivity.class));
 
             }
         });
@@ -38,8 +37,8 @@ public class HomeActivity extends AppCompatActivity {
         ImageView doctorinfo = (ImageView) findViewById(R.id.DoctorInfo);
         doctorinfo.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                // go to signIn page
-                //startActivity(new Intent(HomeActivity.this,deleteViewEditPetProfile.class));
+                // go to doctor info page
+                startActivity(new Intent(HomeActivity.this,doctorInfoActivity.class));
 
             }
         });
