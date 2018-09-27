@@ -33,6 +33,8 @@ public class VerifySMSActivity extends AppCompatActivity {
 
     //firebase auth object
     private FirebaseAuth mAuth;
+
+
     ArrayList<String> petOwner;
     String mobile;
 
@@ -134,6 +136,9 @@ public class VerifySMSActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+
+                            //delete the account create using number
+                            mAuth.getCurrentUser().delete();
                             //verification successful we will start the profile activity
                             Intent intent = new Intent(VerifySMSActivity.this, SetProfileActivity.class);
                             //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -152,14 +157,6 @@ public class VerifySMSActivity extends AppCompatActivity {
                                 message = "Invalid code entered...";
                             }
 
-                            /*Snackbar snackbar = Snackbar.make(findViewById(R.id.parent), message, Snackbar.LENGTH_LONG);
-                            snackbar.setAction("Dismiss", new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-
-                                }
-                            });
-                            snackbar.show();*/
                         }
                     }
                 });

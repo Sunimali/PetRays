@@ -44,7 +44,7 @@ public class SetProfileActivity extends AppCompatActivity {
                 //add petowner
                 addPetOwner();
                 // go to home page
-                startActivity(new Intent(SetProfileActivity.this,HomeActivity.class));
+                startActivity(new Intent(SetProfileActivity.this,ProfileActivity.class));
 
             }
         });

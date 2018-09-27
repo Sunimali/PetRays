@@ -1,17 +1,26 @@
 package com.example.sunimali.petrays;
 
 import android.content.Intent;
-import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-import java.sql.Array;
 import java.util.ArrayList;
 
 
@@ -20,13 +29,14 @@ public class SignUpActivity extends AppCompatActivity {
 
     //view objects
     EditText editTextname,editTextaddress,editTextpassword,editTextEmail,editTextMobile;
-
-    //we will use these constants later to pass the artist name and id to another activity
-    public static final String ARTIST_NAME = "net.simplifiedcoding.firebasedatabaseexample.artistname";
-    public static final String ARTIST_ID = "net.simplifiedcoding.firebasedatabaseexample.artistid";
+    String name,email,address,password;
 
     //our database reference object
     DatabaseReference databasePetOwners;
+
+    FirebaseAuth mAuth;
+
+    String mobile = "";
 
 
 
@@ -39,52 +49,126 @@ public class SignUpActivity extends AppCompatActivity {
         editTextname = (EditText) findViewById(R.id.editTextName);
         editTextaddress = (EditText) findViewById(R.id.editTextaddress);
         editTextpassword = (EditText) findViewById(R.id.editTextPassword);
-        editTextEmail = (EditText) findViewById(R.id.editTextEmail);
-        Button button = (Button)findViewById(R.id.SignUpbutton);
+        editTextEmail = (EditText) findViewById(R.id.editTextemail);
+        Button button = (Button) findViewById(R.id.SignUpbutton);
         editTextMobile = findViewById(R.id.editTextmobile);
 
-
-
+        mAuth = FirebaseAuth.getInstance();
 
 
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                String mobile = editTextMobile.getText().toString().trim();
+                final String mobile = editTextMobile.getText().toString().trim();
                 getdetails();
 
-                if(mobile.isEmpty() || mobile.length() != 12){
+                //check whether mobile number is vlid or not
+                if (mobile.isEmpty() || mobile.length() != 12) {
                     editTextMobile.setError("Enter a valid mobile");
                     editTextMobile.requestFocus();
                     return;
+                } else {
+
+                    //if it is valid check already is it registered or not
+                    DatabaseReference petownerRef = FirebaseDatabase.getInstance().getReference("PetOwners");
+                    petownerRef.orderByChild("mobileNumber").equalTo(mobile).addListenerForSingleValueEvent(new ValueEventListener() {
+
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            if (dataSnapshot.getValue() != null) {
+                                //it means user already registered
+                                editTextMobile.setError("This mobile number is already registered");
+
+                            } else {
+                                //It is new users
+
+
+                                //create new user using email and password;
+
+                                mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<AuthResult> task) {
+                                        //progressBar.setVisibility(View.GONE);
+                                        if (task.isSuccessful()) {
+                                            finish();
+                                            Intent intent = new Intent(SignUpActivity.this, VerifySMSActivity.class);
+                                            intent.putExtra("mobile", mobile);
+                                            intent.putStringArrayListExtra("petowner", p);
+                                            startActivity(intent);
+                                        } else {
+
+                                            if (task.getException() instanceof FirebaseAuthUserCollisionException) {
+                                                Toast.makeText(getApplicationContext(), "You are already registered", Toast.LENGTH_SHORT).show();
+
+                                            } else {
+                                                Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                            }
+
+                                        }
+                                    }
+                                });
+
+
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+
+                        }
+                    });
                 }
-                //start sign up page
-               // Intent intent = new Intent(SignUpActivity.this, VerifySMSActivity.class);
-                Intent intent = new Intent(SignUpActivity.this, VerifySMSActivity.class);
-                intent.putExtra("mobile", mobile);
-                intent.putStringArrayListExtra("petowner",p);
-                startActivity(intent);
 
 
             }
         });
+
     }
 
     private void getdetails() {
         //getting the values to save
-        String name = editTextname.getText().toString().trim();
-        String address = editTextaddress.getText().toString().trim();
-        String email = editTextEmail.getText().toString().trim();
-        String password = editTextpassword.getText().toString().trim();
-        String mobile = editTextMobile.getText().toString().trim();
+        name = editTextname.getText().toString().trim();
+        address = editTextaddress.getText().toString().trim();
+        email = editTextEmail.getText().toString().trim();
+        password = editTextpassword.getText().toString().trim();
+        mobile = editTextMobile.getText().toString().trim();
 
+
+        //check email field is empty or not
+        if (email.isEmpty()) {
+            editTextEmail.setError("Email is required");
+            editTextEmail.requestFocus();
+            return;
+        }
+        //chec pattern of email
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            editTextEmail.setError("Please enter a valid email");
+            editTextEmail.requestFocus();
+            return;
+        }
+        //check password given or not
+        if (password.isEmpty()) {
+            editTextpassword.setError("Password is required");
+            editTextpassword.requestFocus();
+            return;
+        }
+        //check validation of password
+        if (password.length() < 6) {
+            editTextpassword.setError("Minimum lenght of password should be 6");
+            editTextpassword.requestFocus();
+            return;
+        }
+
+        //progressBar.setVisibility(View.VISIBLE);
+
+
+    //add data to arrayList
         p = new ArrayList<>();
         p.add(name);
         p.add(password);
         p.add(address);
         p.add(email);
         p.add(mobile);
-
-
     }
 
 }
