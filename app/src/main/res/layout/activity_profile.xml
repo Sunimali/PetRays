@@ -14,50 +14,46 @@
         android:layout_height="231dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="97dp"
         app:srcCompat="@drawable/icons8customer512" />
 
     <TextView
-        android:id="@+id/textView13"
-        android:layout_width="158dp"
+        android:id="@+id/textViewName"
+        android:layout_width="182dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="206dp"
-        android:text="Sunimali Rathnayake" />
+        android:text="Sunimali Rathnayake"
+        android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/textView14"
+        android:id="@+id/textViewEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="165dp"
-        android:text="sunimalirathnayke@gmail.com" />
+        android:text="sunimalirathnayke@gmail.com"
+        android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/textView15"
+        android:id="@+id/textViewEditProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="121dp"
-        android:text="Edit profile" />
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/my_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
-        android:elevation="4dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+        android:text="Edit profile"
+        android:textSize="18sp" />
 
     <ImageButton
-        android:id="@+id/imageButtonhome"
-        android:layout_width="70dp"
-        android:layout_height="74dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"
-        app:srcCompat="@drawable/icons8house64" />
+        android:id="@+id/imageButtoneditphoto"
+        android:layout_width="44dp"
+        android:layout_height="43dp"
+        android:layout_alignEnd="@+id/textViewName"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="12dp"
+        app:srcCompat="@android:drawable/ic_menu_camera" />
 
 </RelativeLayout>

@@ -11,14 +11,18 @@ public class PetOwner{
     private String mobileNumber;
     private String petOwnerID;
 
+    public PetOwner() {
+
+    }
+
     public PetOwner(String name, String userName, String password, String address, String email, String mobileNumber, String petOwnerID) {
-        this.name = name;
-        this.userName = userName;
-        this.password = password;
-        this.address = address;
-        Email = email;
-        this.mobileNumber = mobileNumber;
-        this.petOwnerID = petOwnerID;
+        this.setName(name);
+        this.setUserName(userName);
+        this.setPassword(password);
+        this.setAddress(address);
+        setEmail(email);
+        this.setMobileNumber(mobileNumber);
+        this.setPetOwnerID(petOwnerID);
     }
 
     public String getName() {
@@ -57,4 +61,31 @@ public class PetOwner{
     }
 
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setEmail(String email) {
+        Email = email;
+    }
+
+    public void setMobileNumber(String mobileNumber) {
+        this.mobileNumber = mobileNumber;
+    }
+
+    public void setPetOwnerID(String petOwnerID) {
+        this.petOwnerID = petOwnerID;
+    }
 }

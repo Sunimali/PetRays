@@ -67,6 +67,8 @@ public class NewPetActivity extends AppCompatActivity {
         String weight = editTextweight.getText().toString().trim();
 
         Pet p = new Pet(name,age,specie,breed,dp,weight);
+
+
     }
 
     private File getFile(){

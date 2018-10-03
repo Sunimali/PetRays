@@ -2,8 +2,32 @@
 <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorPrimaryDark"
     android:minHeight="?attr/actionBarSize"
     android:id="@+id/toolbar">
+
+    <ImageButton
+        android:id="@+id/imageButtonhome"
+        android:layout_width="70dp"
+        android:layout_height="74dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        app:srcCompat="@drawable/icons8house64" />
+
+    <ImageButton
+        android:id="@+id/imageButtonLogout"
+        android:layout_width="70dp"
+        android:layout_height="74dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        app:srcCompat="@drawable/icons8signout64" />
+    <ImageButton
+        android:id="@+id/imageButtonNotification"
+        android:layout_width="70dp"
+        android:layout_height="74dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        app:srcCompat="@drawable/icons8bell64" />
 
 </android.support.v7.widget.Toolbar>

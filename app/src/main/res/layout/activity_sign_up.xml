@@ -28,8 +28,8 @@
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/textView7"
-        app:layout_constraintEnd_toEndOf="@+id/editTextPassword"
-        app:layout_constraintStart_toStartOf="@+id/editTextPassword"
+        app:layout_constraintEnd_toEndOf="@+id/editTextPasswordU"
+        app:layout_constraintStart_toStartOf="@+id/editTextPasswordU"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -43,7 +43,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextPassword"
+        android:id="@+id/editTextPasswordU"
         android:layout_width="wrap_content"
         android:layout_height="46dp"
         android:ems="10"
@@ -80,7 +80,7 @@
         android:inputType="textPostalAddress"
         app:layout_constraintEnd_toEndOf="@+id/editTextemail"
         app:layout_constraintStart_toStartOf="@+id/editTextemail"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextPasswordU" />
 
     <EditText
         android:id="@+id/editTextemail"

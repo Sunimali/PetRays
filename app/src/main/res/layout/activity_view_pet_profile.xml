@@ -33,7 +33,7 @@
         app:layout_constraintTop_toTopOf="@+id/editText13" />
 
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/textViewName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="84dp"
@@ -55,12 +55,12 @@
         android:layout_marginTop="56dp"
         app:layout_constraintBottom_toBottomOf="@+id/editText15"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView13"
+        app:layout_constraintStart_toEndOf="@+id/textViewName"
         app:layout_constraintTop_toTopOf="@+id/spinner"
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/textView14"
+        android:id="@+id/textViewEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -69,7 +69,7 @@
         android:textColor="@color/textColorFont"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewName" />
 
     <TextView
         android:id="@+id/textView15"
@@ -131,7 +131,7 @@
         android:layout_height="37dp"
         android:layout_marginBottom="96dp"
         android:layout_marginTop="97dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView14"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewEmail"
         app:layout_constraintEnd_toEndOf="@+id/editText13"
         app:layout_constraintStart_toStartOf="@+id/editText13"
         app:layout_constraintTop_toBottomOf="@+id/imageButton5" />

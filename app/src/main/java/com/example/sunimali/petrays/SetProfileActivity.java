@@ -36,7 +36,7 @@ public class SetProfileActivity extends AppCompatActivity {
         p = new ArrayList<>();
         p =  intent.getStringArrayListExtra("petowner");
 
-        userName = findViewById(R.id.editTextUserName);
+        userName = findViewById(R.id.editTextUserNameU);
         addProfPicButton = findViewById(R.id.imageButtonaddProfPic);
         nextbutton3 = (Button)findViewById(R.id.nextbutton3);
         nextbutton3.setOnClickListener(new View.OnClickListener() {
@@ -53,7 +53,7 @@ public class SetProfileActivity extends AppCompatActivity {
     private void addPetOwner() {
 
 
-        //getting the reference of artists node
+        //getting the reference of petowners node
         databasePetOwners = FirebaseDatabase.getInstance().getReference("PetOwners");
 
         String username = userName.getText().toString().trim();

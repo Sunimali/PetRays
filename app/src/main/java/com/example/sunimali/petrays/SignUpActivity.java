@@ -48,7 +48,7 @@ public class SignUpActivity extends AppCompatActivity {
         //getting views
         editTextname = (EditText) findViewById(R.id.editTextName);
         editTextaddress = (EditText) findViewById(R.id.editTextaddress);
-        editTextpassword = (EditText) findViewById(R.id.editTextPassword);
+        editTextpassword = (EditText) findViewById(R.id.editTextPasswordU);
         editTextEmail = (EditText) findViewById(R.id.editTextemail);
         Button button = (Button) findViewById(R.id.SignUpbutton);
         editTextMobile = findViewById(R.id.editTextmobile);
@@ -140,7 +140,7 @@ public class SignUpActivity extends AppCompatActivity {
             editTextEmail.requestFocus();
             return;
         }
-        //chec pattern of email
+        //check pattern of email
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             editTextEmail.setError("Please enter a valid email");
             editTextEmail.requestFocus();
