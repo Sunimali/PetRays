@@ -10,20 +10,24 @@ public class PetOwner{
     private String Email;
     private String mobileNumber;
     private String petOwnerID;
+    String url;
+
+    public PetOwner(String name, String userName, String password, String address, String email, String mobileNumber, String petOwnerID, String url) {
+        this.name = name;
+        this.userName = userName;
+        this.password = password;
+        this.setAddress(address);
+        Email = email;
+        this.mobileNumber = mobileNumber;
+        this.petOwnerID = petOwnerID;
+        this.url = url;
+    }
+
 
     public PetOwner() {
 
     }
 
-    public PetOwner(String name, String userName, String password, String address, String email, String mobileNumber, String petOwnerID) {
-        this.setName(name);
-        this.setUserName(userName);
-        this.setPassword(password);
-        this.setAddress(address);
-        setEmail(email);
-        this.setMobileNumber(mobileNumber);
-        this.setPetOwnerID(petOwnerID);
-    }
 
     public String getName() {
         return name;

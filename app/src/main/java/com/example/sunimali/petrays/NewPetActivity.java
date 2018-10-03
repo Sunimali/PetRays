@@ -27,7 +27,8 @@ public class NewPetActivity extends AppCompatActivity {
     Button buttonAddPet;
     CircleImageView NewDpOfPetImageView;
     EditText editTextPetName,editTextAge,editTextweight,editTextBreed;
-    static final int CAM_REQUEST = 1;String imageFileName;
+    static final int CAM_REQUEST = 1;
+    String imageFileName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
