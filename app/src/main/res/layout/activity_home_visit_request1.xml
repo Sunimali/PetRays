@@ -6,17 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".HomeVisitRequest1Activity">
 
-    <EditText
-        android:id="@+id/editText3"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:ems="10"
-        android:inputType="textMultiLine"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
 
     <Button
         android:id="@+id/buttonnextforpayment"
@@ -27,23 +16,41 @@
         android:text="Next"
         android:textColor="@color/button_text"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="447dp" />
+        tools:layout_editor_absoluteY="481dp" />
 
     <TextView
-        android:id="@+id/textView19"
+        android:id="@+id/name1"
         android:layout_width="wrap_content"
-        android:layout_height="26dp"
-        android:text="Purpose:"
-        tools:layout_editor_absoluteX="52dp"
-        tools:layout_editor_absoluteY="113dp" />
+        android:layout_height="wrap_content"
+        android:text="Name"
+        tools:layout_editor_absoluteX="31dp"
+        tools:layout_editor_absoluteY="80dp" />
+
+    <TextView
+        android:id="@+id/Reason"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reason for Appointment"
+        tools:layout_editor_absoluteX="31dp"
+        tools:layout_editor_absoluteY="153dp" />
 
     <EditText
-        android:id="@+id/editText7"
+        android:id="@+id/app_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Purpose"
         android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="152dp"
-        tools:layout_editor_absoluteY="92dp" />
+        android:text="Name"
+        tools:layout_editor_absoluteX="185dp"
+        tools:layout_editor_absoluteY="80dp" />
+
+    <EditText
+        android:id="@+id/ReasonForAppointment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        tools:layout_editor_absoluteX="162dp"
+        tools:layout_editor_absoluteY="182dp" />
+
 </android.support.constraint.ConstraintLayout>
