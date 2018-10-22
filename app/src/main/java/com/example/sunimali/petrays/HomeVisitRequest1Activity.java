@@ -17,8 +17,7 @@ public class HomeVisitRequest1Activity extends AppCompatActivity {
         setContentView(R.layout.activity_home_visit_request1);
 
 
-        EditText appName = (EditText)FindViewById(R.id.app_name);
-        EditText reasonForAppointmet = (EditText)FindViewById(R.id.ReasonForAppointment);
+
 
 
 
