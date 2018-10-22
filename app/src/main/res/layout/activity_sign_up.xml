@@ -17,7 +17,8 @@
         android:text="Name :"
         app:layout_constraintBottom_toBottomOf="@+id/textView7"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/editTextName"
@@ -56,6 +57,7 @@
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
         android:layout_marginStart="16dp"
         android:text="Address :"
         app:layout_constraintBottom_toBottomOf="@+id/editTextaddress"
@@ -65,6 +67,7 @@
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
         android:layout_marginStart="16dp"
         android:text="Email"
         app:layout_constraintBottom_toBottomOf="@+id/editTextemail"
@@ -116,16 +119,16 @@
 
     <Button
         android:id="@+id/SignUpbutton"
-        android:layout_width="148dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="32dp"
         android:layout_marginEnd="99dp"
         android:layout_marginStart="94dp"
         android:text="Sign  Up"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/editTextmobile"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.436"
         app:layout_constraintStart_toStartOf="@+id/textView10"
         tools:textAllCaps="?android:attr/windowOverscan" />
 </android.support.constraint.ConstraintLayout>

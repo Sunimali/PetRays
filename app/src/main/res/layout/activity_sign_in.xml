@@ -11,7 +11,7 @@
 
     <Button
         android:id="@+id/signInbutton2"
-        android:layout_width="160dp"
+        android:layout_width="317dp"
         android:layout_height="0dp"
         android:layout_marginBottom="118dp"
         android:text="Sign In"
@@ -19,6 +19,7 @@
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/progressBar" />
 
@@ -44,7 +45,7 @@
         android:layout_marginBottom="289dp"
         android:layout_marginEnd="13dp"
         android:layout_marginStart="16dp"
-        android:text="Password"
+        android:text="Password:"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/editTextpassword"
