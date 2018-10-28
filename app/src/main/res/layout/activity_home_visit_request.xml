@@ -7,18 +7,17 @@
     tools:context=".HomeVisitRequest">
 
 
-
     <TextView
-        android:id="@+id/textView41"
+        android:id="@+id/Name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Name :"
+        tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="30dp"
-        tools:layout_editor_absoluteY="61dp"
-        tools:ignore="MissingConstraints" />
+        tools:layout_editor_absoluteY="61dp" />
 
     <TextView
-        android:id="@+id/textView43"
+        android:id="@+id/Date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Date :"
@@ -27,7 +26,7 @@
         tools:layout_editor_absoluteY="284dp" />
 
     <TextView
-        android:id="@+id/textView44"
+        android:id="@+id/Time"
         android:layout_width="60dp"
         android:layout_height="32dp"
         android:text="Time :"
@@ -85,7 +84,7 @@
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/textView42"
+        android:id="@+id/Reason For Appointment"
         android:layout_width="241dp"
         android:layout_height="30dp"
         android:text="Reason For Appointment"
@@ -93,7 +92,7 @@
         tools:layout_editor_absoluteY="173dp" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Submit"
