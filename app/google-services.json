@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "538557779597-ip40t5b5lh8ak0fg2lehkl19qq8l1rc4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sunimali.petrays",
+            "certificate_hash": "79140043e3f57c1a1708d48de0d6743babff8e3b"
+          }
+        },
+        {
           "client_id": "538557779597-n3evf499gh5ca2oko50u43av3a98mngc.apps.googleusercontent.com",
           "client_type": 3
         }

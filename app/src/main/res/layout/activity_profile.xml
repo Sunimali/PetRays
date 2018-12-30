@@ -9,7 +9,7 @@
     <include layout="@layout/toolbar_layout"/>
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/imageViewDpPhoto"
         android:layout_width="302dp"
         android:layout_height="231dp"
         android:layout_alignParentTop="true"

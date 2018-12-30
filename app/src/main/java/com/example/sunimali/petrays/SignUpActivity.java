@@ -29,7 +29,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     //view objects
     EditText editTextname,editTextaddress,editTextpassword,editTextEmail,editTextMobile;
-    String name,email,address,password;
+    String name,email,address,password,ID;
 
     //our database reference object
     DatabaseReference databasePetOwners;
@@ -37,6 +37,7 @@ public class SignUpActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
 
     String mobile = "";
+    boolean emailOK,mobileOK;
 
 
 
@@ -80,33 +81,28 @@ public class SignUpActivity extends AppCompatActivity {
 
                             } else {
                                 //It is new users
+                                mobileOK = true;
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
 
 
-                                //create new user using email and password;
+                        }
+                    });
 
-                                mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<AuthResult> task) {
-                                        //progressBar.setVisibility(View.GONE);
-                                        if (task.isSuccessful()) {
-                                            finish();
-                                            Intent intent = new Intent(SignUpActivity.this, VerifySMSActivity.class);
-                                            intent.putExtra("mobile", mobile);
-                                            intent.putStringArrayListExtra("petowner", p);
-                                            startActivity(intent);
-                                        } else {
+                    petownerRef.orderByChild("Email").equalTo(email).addListenerForSingleValueEvent(new ValueEventListener() {
 
-                                            if (task.getException() instanceof FirebaseAuthUserCollisionException) {
-                                                Toast.makeText(getApplicationContext(), "You are already registered", Toast.LENGTH_SHORT).show();
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            if (dataSnapshot.getValue() != null) {
+                                //it means user already registered
+                                editTextEmail.setError("This Email is already registered");
 
-                                            } else {
-                                                Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                                            }
-
-                                        }
-                                    }
-                                });
-
+                            } else {
+                                //It is new users
+                                emailOK = true;
 
                             }
                         }
@@ -119,13 +115,28 @@ public class SignUpActivity extends AppCompatActivity {
                     });
                 }
 
+        if(mobileOK&&emailOK){
+            Intent intent = new Intent(SignUpActivity.this, VerifySMSActivity.class);
+            intent.putExtra("mobile", mobile);
+            intent.putStringArrayListExtra("petowner", p);
+            startActivity(intent);
+
+        }
+
 
             }
         });
 
+
+
+
+
+
     }
 
-    private void getdetails() {
+
+
+    private void getdetails(){
         //getting the values to save
         name = editTextname.getText().toString().trim();
         address = editTextaddress.getText().toString().trim();
@@ -169,6 +180,7 @@ public class SignUpActivity extends AppCompatActivity {
         p.add(address);
         p.add(email);
         p.add(mobile);
+
     }
 
 }

@@ -6,7 +6,7 @@
 
 
     <string name="title_activity_view_pet_profile">ViewPetProfile</string>
-    <string name="linktoDoccalendar"><a href="">View Doctor's Availability</a></string>
+
     <string-array name="species">
         <item>Dog</item>
         <item>Cat</item>

@@ -7,12 +7,16 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+//import com.google.firebase.storage.FirebaseStorage;
+//import com.google.firebase.storage.StorageReference;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -27,6 +31,7 @@ public class ProfileActivity extends AppCompatActivity {
     DatabaseReference databasePetOwners;
     FirebaseUser user;
     String ID,ownersName,ownerEmail;
+    ImageView dp;
 
 
     @Override
@@ -44,6 +49,8 @@ public class ProfileActivity extends AppCompatActivity {
         name = (TextView)findViewById(R.id.textViewName);
         email = (TextView)findViewById(R.id.textViewEmail);
         editProfile =  (TextView)findViewById(R.id.textViewEditProfile);
+        dp = (ImageView)findViewById(R.id.imageViewDpPhoto);
+
 
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
@@ -54,11 +61,13 @@ public class ProfileActivity extends AppCompatActivity {
         name.setText(user.getDisplayName());
         email.setText(user.getEmail());
 
+        //loadDetails();
+
         buttonHome.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
 
-                // go to signIn page
+                // go to home page
                 startActivity(new Intent(ProfileActivity.this,HomeActivity.class));
 
             }
@@ -78,15 +87,17 @@ public class ProfileActivity extends AppCompatActivity {
 
     }
 
+    /*private void loadDetails() {
 
+        // Reference to an image file in Cloud Storage
+        StorageReference storageReference = FirebaseStorage.getInstance().getReference();
 
-
-
-
-
-
-
-
+// Download directly from StorageReference using Glide
+// (See MyAppGlideModule for Loader registration)
+        Glide.with(this /* context *///)
+                /*.load(storageReference)
+                .into(dp);
+    }*/
 
 
 }

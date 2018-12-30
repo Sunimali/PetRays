@@ -16,11 +16,14 @@ import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
+
+import static java.sql.DriverManager.println;
 
 public class VerifySMSActivity extends AppCompatActivity {
 
@@ -32,7 +35,7 @@ public class VerifySMSActivity extends AppCompatActivity {
     private EditText editTextCode;
 
     //firebase auth object
-    private FirebaseAuth mAuth;
+    private FirebaseAuth mAuth1,mAuth;
 
 
     ArrayList<String> petOwner;
@@ -71,6 +74,7 @@ public class VerifySMSActivity extends AppCompatActivity {
 
                 //verifying the code entered manually
                 verifyVerificationCode(code);
+
             }
         });
 
@@ -140,6 +144,30 @@ public class VerifySMSActivity extends AppCompatActivity {
                             //delete the account create using number
                             mAuth.getCurrentUser().delete();
                             //verification successful we will start the profile activity
+                            mAuth1 = FirebaseAuth.getInstance();
+                            mAuth1.createUserWithEmailAndPassword(petOwner.get(3), petOwner.get(1)).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    //progressBar.setVisibility(View.GONE);
+                                    if (task.isSuccessful()) {
+                                        finish();
+                                        Intent intent = new Intent(VerifySMSActivity.this, SetProfileActivity.class);
+                                        intent.putExtra("mobile", mobile);
+                                        intent.putStringArrayListExtra("petowner", petOwner);
+                                        startActivity(intent);
+                                    } else {
+
+                                        if (task.getException() instanceof FirebaseAuthUserCollisionException) {
+                                            Toast.makeText(getApplicationContext(), "You are already registered", Toast.LENGTH_SHORT).show();
+
+                                        } else {
+                                            Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                        }
+
+                                    }
+                                }
+                            });
+
                             Intent intent = new Intent(VerifySMSActivity.this, SetProfileActivity.class);
                             //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             intent.putExtra("mobile", mobile);

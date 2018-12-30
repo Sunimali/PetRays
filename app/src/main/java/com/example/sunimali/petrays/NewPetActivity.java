@@ -93,12 +93,12 @@ public class NewPetActivity extends AppCompatActivity {
                         startActivityForResult(camera,CAM_REQUEST);
                     }
                 }
-        );
+        );//String path = "sdcard/camApp/cam.jpg";
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        //String path = "sdcard/camApp/cam.jpg";
+
         String path =  "sdcard/VetsApp/"+imageFileName;
         //photo.setImageDrawable(Drawable.createFromPath(path));
     }

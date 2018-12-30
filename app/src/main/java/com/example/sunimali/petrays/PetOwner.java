@@ -10,17 +10,24 @@ public class PetOwner{
     private String Email;
     private String mobileNumber;
     private String petOwnerID;
-    String url;
+    private String url;
 
-    public PetOwner(String name, String userName, String password, String address, String email, String mobileNumber, String petOwnerID, String url) {
-        this.name = name;
-        this.userName = userName;
-        this.password = password;
-        this.setAddress(address);
+    public PetOwner(String email, String mobileNumber, String petOwnerID) {
         Email = email;
         this.mobileNumber = mobileNumber;
         this.petOwnerID = petOwnerID;
-        this.url = url;
+    }
+
+    public PetOwner(String name, String userName, String password, String address, String email, String mobileNumber, String petOwnerID, String url) {
+        this.setName(name);
+        this.setUserName(userName);
+        this.setPassword(password);
+
+        this.setAddress(address);
+        setEmail(email);
+        this.setMobileNumber(mobileNumber);
+        this.setPetOwnerID(petOwnerID);
+        this.setUrl(url);
     }
 
 
@@ -91,5 +98,13 @@ public class PetOwner{
 
     public void setPetOwnerID(String petOwnerID) {
         this.petOwnerID = petOwnerID;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }
