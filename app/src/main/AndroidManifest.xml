@@ -47,7 +47,8 @@
         <activity android:name=".edit_pet_profile" />
         <activity android:name=".home_visit_request1" />
         <activity android:name=".NewPetActivity" />
-        <activity android:name=".EditProfileActivity"></activity>
+        <activity android:name=".EditProfileActivity" />
+        <activity android:name=".HomeVisitRequest"></activity>
     </application>
 
 </manifest>
