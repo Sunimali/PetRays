@@ -99,7 +99,12 @@ public class SetProfileActivity extends AppCompatActivity {
                 //add petowner
                 addPetOwner();
                 // go to home page
-                startActivity(new Intent(SetProfileActivity.this,ProfileActivity.class));
+                //startActivity(new Intent(SetProfileActivity.this,ProfileActivity.class));
+                Intent intent = new Intent(SetProfileActivity.this, ProfileActivity.class);
+                intent.putExtra("mobile", mobile);
+                p.add(imageToString(bitmap));
+                intent.putStringArrayListExtra("petowner", p);
+                startActivity(intent);
 
             }
         });
@@ -197,98 +202,13 @@ public class SetProfileActivity extends AppCompatActivity {
         //Saving the PetOwner
         databasePetOwners.child(id).setValue(petOwner);
 
+        String Method = "register";
+        PetOwner p1 = new PetOwner(p.get(0),username, p.get(1), p.get(2),  p.get(3),  p.get(4),id, imageToString(bitmap));
+        Backgroundtask backgroundTask = new Backgroundtask(this);
+        backgroundTask.execute(Method,p1.getName(),p1.getUserName(),p1.getPassword(),p1.getAddress(),p1.getEmail(),p1.getMobileNumber(),p1.getMobileNumber(),p1.getPetOwnerID(),p1.getUrl());
 
-
-
-        //if it passes all the validations
-
-        class RegisterUser extends AsyncTask<Void, Void, String> {
-
-            private ProgressBar progressBar;
-
-            @Override
-            protected String doInBackground(Void... voids) {
-                //creating request handler object
-                RequestHandler requestHandler = new RequestHandler();
-
-                //creating request parameters
-                HashMap<String, String> params = new HashMap<>();
-                params.put("name",p.get(0));
-                params.put("username", username);
-                params.put("password", p.get(1));
-                params.put("address", p.get(2));
-                params.put("email", p.get(3));
-                params.put("mobile", p.get(4));
-                params.put("id",id);
-                params.put("imageURL",imageToString(bitmap));
-
-                //returing the response
-                //Toast.makeText(SetProfileActivity.this,"sunimali", Toast.LENGTH_SHORT).show();
-                //s = requestHandler.sendPostRequest(netConstants.URL_REGISTER, params);
-                return requestHandler.sendPostRequest(netConstants.URL_REGISTER, params);
-            }
-
-            @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-                //displaying the progress bar while user registers on the server
-               // progressBar = (ProgressBar) findViewById(R.id.progressBar);
-               // progressBar.setVisibility(View.VISIBLE);
-            }
-
-            @Override
-            protected void onPostExecute(String s) {
-                super.onPostExecute(s);
-                //hiding the progressbar after completion
-                //progressBar.setVisibility(View.GONE);
-
-                try {
-                    //converting response to json object
-                    //s= getJSONUrl(url);  //<< get json string from server
-                    //s = get
-                    JSONObject obj = new JSONObject(s);
-                    //JSONObject obj = new JSONObject(s);
-
-                    //if no error in response
-                    if (!obj.getBoolean("error")) {
-                        Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
-
-                        //getting the user from the response
-                        JSONObject userJson = obj.getJSONObject("PetOwner");
-
-                        //creating a new user object
-                         PetOwner petOwner1 = new PetOwner(
-                                userJson.getString("name"),
-                                userJson.getString("username"),
-                                userJson.getString("password"),
-                                userJson.getString("address"),
-                                 userJson.getString("email"),
-                                 userJson.getString("mobile"),
-                                 userJson.getString("id"),
-                                 userJson.getString("imageURL")
-                        );
-
-                        //storing the user in shared preferences
-                        SharedPrefManager.getInstance(getApplicationContext()).userLogin(petOwner1);
-
-                        //starting the profile activity
-                        finish();
-                        startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
-                    } else {
-                        Toast.makeText(getApplicationContext(), "Some error occurred", Toast.LENGTH_SHORT).show();
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-        //executing the async task
-        RegisterUser ru = new RegisterUser();
-        ru.execute();
-        Log.e(tag, "addPetOwner: ."+username);
     }
-
+    //convert bitmap into string
     public String imageToString(Bitmap bitmap){
 
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();

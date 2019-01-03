@@ -28,7 +28,7 @@ public class HomeActivity extends AppCompatActivity {
         appointments.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // go to appointments page
-                startActivity(new Intent(HomeActivity.this,AppointmentMenuActivity.class));
+               // startActivity(new Intent(HomeActivity.this,AppointmentMenuActivity.class));
 
             }
         });

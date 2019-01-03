@@ -121,13 +121,17 @@ public class EditProfileActivity extends AppCompatActivity {
         //get the currentuser's Id
         petOwnerID = user.getUid();
 
-        p = new PetOwner();
+       /* p = new PetOwner();
         p.setName(ds.child(petOwnerID).getValue(PetOwner.class).getName());
         p.setUserName(ds.child(petOwnerID).getValue(PetOwner.class).getUserName());
         p.setPassword(ds.child(petOwnerID).getValue(PetOwner.class).getPassword());
         p.setAddress(ds.child(petOwnerID).getValue(PetOwner.class).getAddress());
         p.setEmail(ds.child(petOwnerID).getValue(PetOwner.class).getEmail());
-        p.setMobileNumber(ds.child(petOwnerID).getValue(PetOwner.class).getMobileNumber());
+        p.setMobileNumber(ds.child(petOwnerID).getValue(PetOwner.class).getMobileNumber());*/
+
+        String Method = "view";
+        Backgroundtask backgroundTask = new Backgroundtask(this);
+        backgroundTask.execute(Method,user.getUid());
 
         //set the textfields
         editTextname.setText(p.getName());
