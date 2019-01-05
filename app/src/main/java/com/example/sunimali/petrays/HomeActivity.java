@@ -14,10 +14,10 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
 
-        ImageView pets = (ImageView) findViewById(R.id.mypets);
-        pets.setOnClickListener(new View.OnClickListener() {
+       ImageView pets = (ImageView) findViewById(R.id.pets);
+       pets.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                // go to pets page
+               // go to pets page
                 startActivity(new Intent(HomeActivity.this,deleteViewEditPetProfileActivity.class));
 
             }
