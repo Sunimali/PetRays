@@ -40,10 +40,17 @@ public class MyPetsActivity extends AppCompatActivity {
     FirebaseUser firebaseUser;
     String [] age,name,weight,special_note,species,colour,image;
 
+    private ArrayList<String> mNames = new ArrayList<>();
+    private ArrayList<String> mImageUrls = new ArrayList<>();
+   // RecyclerView recyclerView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_pets);
+        //LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        //recyclerView = findViewById(R.id.recycleViewForPets);
+       // recyclerView.setLayoutManager(layoutManager);
 
         //get the views
         addNewPet = (FloatingActionButton)findViewById(R.id.floatingActionButtonAddNewPet);
@@ -58,6 +65,15 @@ public class MyPetsActivity extends AppCompatActivity {
 
         //get all dogs profile pictures and names
         getDogDpsAndNames();
+
+       /* recyclerView.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        startActivity(new Intent(MyPetsActivity.this,deleteViewEditPetProfileActivity.class));
+                    }
+                }
+        );*/
     }
 
     public void getDogDpsAndNames(){
@@ -74,16 +90,25 @@ public class MyPetsActivity extends AppCompatActivity {
 
     }
 
-    public void initRecycleView(){
+    /*public void initRecycleView(){
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         RecyclerView recyclerView = findViewById(R.id.recycleViewForPets);
-        recyclerView.setLayoutManager(layoutManager);
+       recyclerView.setLayoutManager(layoutManager);
         Toast.makeText(this,name[0],Toast.LENGTH_LONG).show();
         petsNames = new ArrayList<String>(Arrays.asList(name));
         petsDP = new ArrayList<String>(Arrays.asList(name));
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(petsDP,petsNames,this);
+        RecyclerViewAdapterH adapter = new RecyclerViewAdapterH(petsDP,petsNames,this);
         recyclerView.setAdapter(adapter);
+    }*/
+    private void initRecyclerView(){
+
+        RecyclerView recyclerView = findViewById(R.id.recycleViewForPets);
+         mNames= new ArrayList<String>(Arrays.asList(name));
+         mImageUrls = new ArrayList<String>(Arrays.asList(name));
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, mNames, mImageUrls);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
     public class viewBackgroundTask extends AsyncTask<String,Void,String> {
@@ -181,8 +206,8 @@ public class MyPetsActivity extends AppCompatActivity {
 
 
             }
-            printdata(name[0]);
-            initRecycleView();
+            //printdata(name[0]);
+            initRecyclerView();
 
         }
 

@@ -4,35 +4,98 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".deleteViewEditPetProfileActivity">
+    tools:context=".deleteViewEditPetProfileActivity"
+    tools:layout_editor_absoluteY="25dp">
+
+    <TextView
+        android:id="@+id/Weight"
+        android:layout_width="113dp"
+        android:layout_height="37dp"
+        android:layout_marginEnd="65dp"
+        android:textSize="18sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView41"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView41" />
+
+    <TextView
+        android:id="@+id/Age"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="65dp"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView4"
+        app:layout_constraintTop_toTopOf="@+id/textView4" />
+
+    <TextView
+        android:id="@+id/Name"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="65dp"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView3"
+        app:layout_constraintTop_toTopOf="@+id/textView3" />
+
+    <TextView
+        android:id="@+id/textView41"
+        android:layout_width="0dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="61dp"
+        android:text="Weight:"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/buttoneditprofile"
+        app:layout_constraintEnd_toStartOf="@+id/Weight"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="0dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="23dp"
+        android:text="Age:"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView41"
+        app:layout_constraintEnd_toStartOf="@+id/Age"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <Button
         android:id="@+id/buttoneditprofile"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="26dp"
+        android:layout_marginBottom="11dp"
         android:background="@color/colorPrimary"
         android:text="Edit Profile"
+        android:textAllCaps="false"
         android:textColor="@color/button_text"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/buttonViewProfile"
-        app:layout_constraintEnd_toEndOf="@+id/buttonViewProfile"
-        app:layout_constraintStart_toStartOf="@+id/buttonViewProfile"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton4"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonTreatments"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView41"
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/buttonViewProfile"
+        android:id="@+id/buttonTreatments"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="13dp"
         android:background="@color/colorPrimary"
-        android:text="View Profile"
+        android:text="Treatments"
+        android:textAllCaps="false"
         android:textColor="@color/button_text"
-        android:textSize="18sp"
+        android:textSize="22sp"
         app:layout_constraintBottom_toTopOf="@+id/buttondelete"
-        app:layout_constraintEnd_toEndOf="@+id/buttondelete"
-        app:layout_constraintStart_toStartOf="@+id/buttondelete"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttoneditprofile"
         tools:ignore="MissingConstraints" />
 
@@ -40,28 +103,42 @@
         android:id="@+id/buttondelete"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="111dp"
         android:background="@color/colorPrimaryDark"
-        android:text="Delete Profile"
+        android:text="Remove Pet"
+        android:textAllCaps="false"
         android:textColor="@color/button_text"
-        android:textSize="18sp"
+        android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonViewProfile"
+        app:layout_constraintTop_toBottomOf="@+id/buttonTreatments"
         tools:ignore="MissingConstraints" />
 
     <ImageButton
         android:id="@+id/imageButton4"
         android:layout_width="119dp"
         android:layout_height="0dp"
-        android:layout_marginTop="56dp"
-        android:layout_marginBottom="64dp"
-        app:layout_constraintBottom_toTopOf="@+id/buttoneditprofile"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="26dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="spread_inside"
         app:srcCompat="@drawable/dog" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="18dp"
+        android:text="Name:"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView4"
+        app:layout_constraintEnd_toStartOf="@+id/Name"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton4" />
 
 </android.support.constraint.ConstraintLayout>
