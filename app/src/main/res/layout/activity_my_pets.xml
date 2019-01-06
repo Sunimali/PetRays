@@ -18,25 +18,25 @@
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/floatingActionButtonAddNewPet"
-        android:layout_width="65dp"
-        android:layout_height="0dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="28dp"
         android:layout_marginBottom="32dp"
-        android:layout_marginEnd="26dp"
         android:adjustViewBounds="?android:attr/windowOverscan"
         android:clickable="true"
         app:backgroundTint="@color/roundappointmentcolor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recycleViewForPets"
-        app:srcCompat="@android:drawable/ic_input_add"
-        />
+        app:layout_constraintVertical_bias="0.959"
+        app:srcCompat="@android:drawable/ic_input_add" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycleViewForPets"
-        android:layout_width="0dp"
-        android:layout_height="319dp"
-        android:layout_marginBottom="177dp"
+        android:layout_width="377dp"
+        android:layout_height="231dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="177dp"
         app:layout_constraintBottom_toTopOf="@+id/floatingActionButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/circleButton"

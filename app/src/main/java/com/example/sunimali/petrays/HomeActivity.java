@@ -18,7 +18,7 @@ public class HomeActivity extends AppCompatActivity {
        pets.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                // go to pets page
-                startActivity(new Intent(HomeActivity.this,deleteViewEditPetProfileActivity.class));
+                startActivity(new Intent(HomeActivity.this,MyPetsActivity.class));
 
             }
         });

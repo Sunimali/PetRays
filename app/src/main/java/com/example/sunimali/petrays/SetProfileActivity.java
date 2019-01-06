@@ -25,6 +25,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -70,6 +72,8 @@ public class SetProfileActivity extends AppCompatActivity {
     Uri photopath;
     String serverUrl;
     private static final String tag = "mytag";
+    FirebaseAuth firebaseAuth;
+    FirebaseUser user;
 
     //StorageReference Dpreference;
     DatabaseReference databasePetOwners;
@@ -199,13 +203,19 @@ public class SetProfileActivity extends AppCompatActivity {
 
         PetOwner petOwner = new PetOwner(p.get(3),mobile,id);
 
+
+
         //Saving the PetOwner
         databasePetOwners.child(id).setValue(petOwner);
+        firebaseAuth = FirebaseAuth.getInstance();
+        user = firebaseAuth.getCurrentUser();
+        String petownerid = user.getUid();
 
         String Method = "register";
-        PetOwner p1 = new PetOwner(p.get(0),username, p.get(1), p.get(2),  p.get(3),  p.get(4),id, imageToString(bitmap));
+        PetOwner p1 = new PetOwner(p.get(0),username, p.get(1), p.get(2),  p.get(3),  p.get(4),petownerid, imageToString(bitmap));
+        Toast.makeText(this,Method+p1.getName()+p1.getUserName()+p1.getPassword()+p1.getAddress()+p1.getEmail()+p1.getMobileNumber()+p1.getPetOwnerID()+p1.getUrl(),Toast.LENGTH_LONG).show();
         Backgroundtask backgroundTask = new Backgroundtask(this);
-        backgroundTask.execute(Method,p1.getName(),p1.getUserName(),p1.getPassword(),p1.getAddress(),p1.getEmail(),p1.getMobileNumber(),p1.getMobileNumber(),p1.getPetOwnerID(),p1.getUrl());
+        backgroundTask.execute(Method,p1.getName(),p1.getUserName(),p1.getPassword(),p1.getAddress(),p1.getEmail(),p1.getMobileNumber(),p1.getPetOwnerID(),p1.getUrl());
 
     }
     //convert bitmap into string

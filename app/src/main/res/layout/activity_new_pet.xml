@@ -9,115 +9,166 @@
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/NewDpOfPetImageView"
         android:layout_width="218dp"
-        android:layout_height="194dp"
+        android:layout_height="173dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="26dp"
         android:background="@drawable/ic_pets_black_24dp"
-        tools:layout_editor_absoluteX="85dp"
-        tools:layout_editor_absoluteY="16dp" />
+        app:layout_constraintBottom_toTopOf="@+id/textView20"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/imageButtonCamera"
         android:layout_width="57dp"
         android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/ic_menu_camera"
-        tools:layout_editor_absoluteX="256dp"
-        tools:layout_editor_absoluteY="155dp" />
+        android:layout_marginStart="35dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginBottom="3dp"
+        app:layout_constraintBottom_toBottomOf="@+id/NewDpOfPetImageView"
+        app:layout_constraintEnd_toEndOf="@+id/editTextPetName"
+        app:layout_constraintStart_toEndOf="@+id/buttonAddPet"
+        app:srcCompat="@android:drawable/ic_menu_camera" />
 
     <TextView
         android:id="@+id/textView20"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="18dp"
         android:text="Name:"
         android:textSize="18sp"
-        tools:layout_editor_absoluteX="41dp"
-        tools:layout_editor_absoluteY="236dp" />
+        app:layout_constraintBottom_toTopOf="@+id/editTextAge"
+        app:layout_constraintEnd_toStartOf="@+id/editTextPetName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/NewDpOfPetImageView" />
 
     <TextView
         android:id="@+id/textView31"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="21dp"
+        android:layout_marginBottom="30dp"
         android:text="Age:"
         android:textSize="18sp"
-        tools:layout_editor_absoluteX="41dp"
-        tools:layout_editor_absoluteY="292dp" />
+        app:layout_constraintBottom_toTopOf="@+id/textView34"
+        app:layout_constraintEnd_toStartOf="@+id/editTextAge"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView32"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
+        android:layout_width="63dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="41dp"
+        android:layout_marginEnd="37dp"
+        android:layout_marginBottom="27dp"
         android:text="Specie:"
         android:textSize="18sp"
-        tools:layout_editor_absoluteX="41dp"
-        tools:layout_editor_absoluteY="401dp" />
+        app:layout_constraintBottom_toTopOf="@+id/textView33"
+        app:layout_constraintEnd_toStartOf="@+id/spinnerSpecies"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView34" />
 
     <TextView
         android:id="@+id/textView33"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Breed"
+        android:layout_marginStart="39dp"
+        android:layout_marginEnd="47dp"
+        android:layout_marginBottom="20dp"
+        android:text="Colour"
         android:textSize="18sp"
-        tools:layout_editor_absoluteX="39dp"
-        tools:layout_editor_absoluteY="458dp" />
+        app:layout_constraintBottom_toTopOf="@+id/buttonAddPet"
+        app:layout_constraintEnd_toStartOf="@+id/editTextColour"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView32" />
 
     <TextView
         android:id="@+id/textView34"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="29dp"
         android:text="Weight"
         android:textSize="18sp"
-        tools:layout_editor_absoluteX="41dp"
-        tools:layout_editor_absoluteY="347dp" />
+        app:layout_constraintBottom_toTopOf="@+id/textView32"
+        app:layout_constraintEnd_toStartOf="@+id/editTextWeight"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextAge" />
 
     <EditText
         android:id="@+id/editTextPetName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:ems="10"
         android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="133dp"
-        tools:layout_editor_absoluteY="225dp" />
+        app:layout_constraintBottom_toTopOf="@+id/editTextAge"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView20" />
 
     <Spinner
         android:id="@+id/spinnerSpecies"
-        android:layout_width="209dp"
+        android:layout_width="0dp"
         android:layout_height="49dp"
-        tools:layout_editor_absoluteX="135dp"
-        tools:layout_editor_absoluteY="391dp" />
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="43dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView33"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView32"
+        app:layout_constraintTop_toTopOf="@+id/textView34" />
 
     <EditText
         android:id="@+id/editTextWeight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="9dp"
         android:ems="10"
+        android:hint="kg"
         android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="133dp"
-        tools:layout_editor_absoluteY="334dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView34"
+        app:layout_constraintTop_toBottomOf="@+id/editTextAge" />
 
     <Button
         android:id="@+id/buttonAddPet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:text="Add"
         android:textAllCaps="?android:attr/windowOverscan"
         android:textColor="@android:color/background_light"
-        tools:layout_editor_absoluteX="133dp"
-        tools:layout_editor_absoluteY="503dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/editTextColour"
+        app:layout_constraintTop_toBottomOf="@+id/textView33" />
 
     <EditText
-        android:id="@+id/editTextBreed"
-        android:layout_width="211dp"
+        android:id="@+id/editTextColour"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="3dp"
         android:ems="10"
         android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="133dp"
-        tools:layout_editor_absoluteY="454dp" />
+        app:layout_constraintBottom_toTopOf="@+id/buttonAddPet"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView33" />
 
     <EditText
         android:id="@+id/editTextAge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="22dp"
         android:ems="10"
+        android:hint="years"
         android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="133dp"
-        tools:layout_editor_absoluteY="279dp" />
+        app:layout_constraintBottom_toTopOf="@+id/textView34"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView31"
+        app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
 </android.support.constraint.ConstraintLayout>

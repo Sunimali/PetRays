@@ -1,5 +1,6 @@
 package com.example.sunimali.petrays;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 
@@ -15,22 +16,22 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 
-/*public class viewBackgroundTask extends AsyncTask<String,Void,String> {
-
+public class viewBackgroundTask extends AsyncTask<String,Void,String> {
+    ProgressDialog progressDialog;
     Context context;
+    String json_string;
     viewBackgroundTask(Context context){
         this.context = context;
     }
-
     @Override
     protected void onPreExecute() {
-        //progressDialog.show();
+
     }
 
     @Override
     protected String doInBackground(String... params) {
         String method = params[0];
-        String viewProfileUrl = netConstants.USER_LOGIN_SERVER_URL;
+        String viewProfileUrl = netConstants.URL_VIEW;
         if(method.equals("view")){
             try{
                 String id = params[1];
@@ -73,25 +74,21 @@ import java.net.URLEncoder;
     @Override
     protected void onPostExecute(String result) {
 
-       /* if(progressDialog.isShowing()) {
+       if(progressDialog.isShowing()) {
             progressDialog.dismiss();
-        }*/
-
-        //Toast.makeText(LoginActivity.this, result , Toast.LENGTH_SHORT).show();
-    /*    if(result.contains("Success")){
-            SetSharedPref("1", LoginEmail.getText().toString());
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-            startActivity(intent);
-        }else{
-            SetSharedPref("0", "");
-            Toast.makeText(LoginActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
-//                alertDialog.setMessage(result);
-//                alertDialog.show();
+            json_string = result;
+            getData(json_string);
         }
+
+
     }
 
     @Override
     protected void onProgressUpdate(Void... values) {
         super.onProgressUpdate(values);
     }
-}*/
+
+    public void getData(String json_string){
+
+    }
+}

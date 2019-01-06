@@ -1,10 +1,12 @@
 package com.example.sunimali.petrays;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -12,9 +14,11 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 
-import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -26,9 +30,13 @@ public class NewPetActivity extends AppCompatActivity {
     ImageButton camera;
     Button buttonAddPet;
     CircleImageView NewDpOfPetImageView;
-    EditText editTextPetName,editTextAge,editTextweight,editTextBreed;
-    static final int CAM_REQUEST = 1;
-    String imageFileName;
+    EditText editTextPetName,editTextAge,editTextweight,editTextColour;
+    static final int IMG_REQUEST = 1;
+    Bitmap bitmap;
+    FirebaseAuth firebaseAuth;
+    FirebaseUser firebaseUser;
+    String petOwnerID;
+    String dp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +50,7 @@ public class NewPetActivity extends AppCompatActivity {
         editTextPetName = (EditText)findViewById(R.id.editTextPetName);
         editTextAge = (EditText)findViewById(R.id.editTextAge);
         editTextweight = (EditText)findViewById(R.id.editTextWeight);
-        editTextBreed = (EditText)findViewById(R.id.editTextBreed);
+        editTextColour = (EditText)findViewById(R.id.editTextColour);
         spinnerSpecies = (Spinner)findViewById(R.id.spinnerSpecies);
 
         //make species drop down list
@@ -54,52 +62,90 @@ public class NewPetActivity extends AppCompatActivity {
         getPhoto();
 
         //Add new pet
-        addNewPet();
+        buttonAddPet.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        addNewPet();
+                    }
+                }
+        );
+
 
     }
 
     private void addNewPet() {
 
-        String name = editTextPetName.getText().toString().trim();
+        //fetching data from view
         String age = editTextAge.getText().toString().trim();
-        String specie = spinnerSpecies.getSelectedItem().toString().trim();
-        String breed = editTextBreed.getText().toString().trim();
-        String dp = "";
+        String name = editTextPetName.getText().toString().trim();
         String weight = editTextweight.getText().toString().trim();
+        String specie = spinnerSpecies.getSelectedItem().toString().trim();
+        String colour = editTextColour.getText().toString().trim();
+        //dp = imageToString(bitmap);
 
-        Pet p = new Pet(name,age,specie,breed,dp,weight);
+        //create pet
+        Pet p = new Pet(name,age,specie,colour,dp,weight);
+
+        //get the id of owner
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
+        petOwnerID = firebaseUser.getUid();
+
+        //execute asyctask class
+        String Method = "add";
+        BackgroundTaskPets bp = new BackgroundTaskPets(this);
+        bp.execute(Method,p.getAge(),p.getName(),p.getWeight(),p.getSpecie(),colour,p.getDp(),petOwnerID);
+
+        //go back to my pets
+        startActivity(new Intent(NewPetActivity.this,MyPetsActivity.class));
+        finish();
 
 
     }
 
-    private File getFile(){
-        File folder = new File("sdcard/PetRays");
-        if(!folder.exists()){
-            folder.mkdir();
-        }
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        imageFileName = "JPEG_" + timeStamp + "_" + ".jpg";
-        File imageFile = new File(folder,imageFileName);
-        return imageFile;
-    }
+    //take phot from gallery
     public void getPhoto(){
         camera.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                        File file = getFile();
-                        camera.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
-                        startActivityForResult(camera,CAM_REQUEST);
+                        Intent intent = new Intent();
+                        intent.setType("image/*");
+                        intent.setAction(Intent.ACTION_GET_CONTENT);
+                        startActivityForResult(intent,IMG_REQUEST);
+
                     }
                 }
-        );//String path = "sdcard/camApp/cam.jpg";
+        );
     }
 
+    //set photo to image view
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode,resultCode,data);
 
-        String path =  "sdcard/VetsApp/"+imageFileName;
-        //photo.setImageDrawable(Drawable.createFromPath(path));
+        if(requestCode==IMG_REQUEST && resultCode==RESULT_OK &&data!=null){
+            Uri path = data.getData();
+            dp = path.getPath();
+            try {
+                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),path);
+                NewDpOfPetImageView.setImageBitmap(bitmap);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+
+    //convert bitmap into string
+    public String imageToString(Bitmap bitmap){
+
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG,100,byteArrayOutputStream);
+        byte[] imagebytes = byteArrayOutputStream.toByteArray();
+        return Base64.encodeToString(imagebytes, Base64.DEFAULT);
+
     }
 }

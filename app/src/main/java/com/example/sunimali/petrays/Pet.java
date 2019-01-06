@@ -4,7 +4,7 @@ public class Pet {
     private String name;
     private String age;
     private String specie;
-    private String breed;
+    private String colour;
     private String Dp;
     private String weight;
 
@@ -13,11 +13,11 @@ public class Pet {
 
 
 
-    public Pet(String name, String age, String specie, String breed, String dp, String weight) {
+    public Pet(String name, String age, String specie, String colour, String dp, String weight) {
         this.name = name;
         this.age = age;
         this.specie = specie;
-        this.breed = breed;
+        this.colour = colour;
         Dp = dp;
         this.weight = weight;
     }
@@ -35,8 +35,8 @@ public class Pet {
         return specie;
     }
 
-    public String getBreed() {
-        return breed;
+    public String getColour() {
+        return colour;
     }
 
     public String getDp() {

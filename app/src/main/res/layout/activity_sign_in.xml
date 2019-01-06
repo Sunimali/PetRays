@@ -12,7 +12,7 @@
     <Button
         android:id="@+id/signInbutton2"
         android:layout_width="317dp"
-        android:layout_height="0dp"
+        android:layout_height="52dp"
         android:layout_marginBottom="118dp"
         android:text="Sign In"
         android:textAllCaps="?android:attr/windowOverscan"

@@ -1,6 +1,7 @@
 package com.example.sunimali.petrays;
 
 import android.content.Context;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -37,7 +39,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHoler viewHoler, int i) {
-        Glide.with(context).asBitmap().load(petsDPList.get(i)).into(viewHoler.PetsDP);
+        Uri uri= Uri.fromFile(new File(petsDPList.get(i)));
+       // bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
+
+        Glide.with(context).asBitmap().load(uri).into(viewHoler.PetsDP);
         viewHoler.name.setText(petsNameList.get(i));
 
     }
