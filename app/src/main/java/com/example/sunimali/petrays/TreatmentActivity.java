@@ -5,10 +5,10 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -25,81 +25,46 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
 
-public class deleteViewEditPetProfileActivity extends AppCompatActivity {
+public class TreatmentActivity extends AppCompatActivity {
 
-    TextView namet,aget,weightt;
-    String name,age,weight,special_note,species,colour,image,petOwnerID;
-    String [] agelist,weightlist,special_notelist,specieslist,colourlist;
+    private ArrayList<String> description = new ArrayList<>();
+    private ArrayList<String> medicine = new ArrayList<>();
+    String[] descriptiona,medicinea;
+    String petOwnerID;
+    String name;
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
-    BackgroundTaskPets backgroundTaskPets;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_delete_view_edit_pet_profile);
-
-        Intent intent = getIntent();
-        name = intent.getStringExtra("image_name");
-
+        setContentView(R.layout.activity_treatment);
         //get the id of owner
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
         petOwnerID = firebaseUser.getUid();
 
-        //call asynctask class
-        viewBackgroundTask v = new viewBackgroundTask(this);
-        v.execute();
+        Intent intent = getIntent();
+        name = intent.getStringExtra("name");
 
-        backgroundTaskPets = new BackgroundTaskPets(this);
+        //asyctask execute
+        viewBackgroundTask viewBackgroundTask = new viewBackgroundTask(this);
+        viewBackgroundTask.execute();
+    }
 
+    private void initRecyclerView(){
 
-        namet = (TextView)findViewById(R.id.Name);
-        aget = (TextView)findViewById(R.id.Age);
-        weightt = (TextView)findViewById(R.id.Weight);
-        namet.setText(name);
-        String method = "find";
-
-
-
-        Button buttonedit = (Button)findViewById(R.id.buttoneditprofile);
-        buttonedit.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                // go to edit pet profile page
-                Intent intent = new Intent(deleteViewEditPetProfileActivity.this, editPetProfileActivity.class);
-                intent.putExtra("name", name);
-                intent.putExtra("age", age);
-                intent.putExtra("weight", weight);
-                startActivity(intent);
-
-            }
-        });
-
-
-        Button buttonview = (Button)findViewById(R.id.buttonTreatments);
-        buttonview.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(deleteViewEditPetProfileActivity.this, TreatmentActivity.class);
-                intent.putExtra("name", name);
-                intent.putExtra("age", age);
-                intent.putExtra("weight", weight);
-                startActivity(intent);
-
-
-            }
-        });
-
-        Button buttondelete = (Button)findViewById(R.id.buttondelete);
-        buttondelete.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                // remove pet
-               String method = "delete";
-               backgroundTaskPets.execute(method,name,petOwnerID);
-
-
-            }
-        });
+        RecyclerView recyclerView = findViewById(R.id.RecycleviewTreatment);
+        description= new ArrayList<String>(Arrays.asList(descriptiona));
+        medicine = new ArrayList<String>(Arrays.asList(medicinea));
+        Toast.makeText(this,medicinea[0],Toast.LENGTH_LONG);
+        RecyclerViewAdapterTreatments adapter = new RecyclerViewAdapterTreatments(this, description, medicine);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
     public class viewBackgroundTask extends AsyncTask<String,Void,String> {
@@ -119,12 +84,12 @@ public class deleteViewEditPetProfileActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... params) {
 
-            String viewProfileUrl = netConstants.URL_FIND;
-            String id = petOwnerID;
+            String viewProfileUrl = netConstants.URL_VIEWTREAT;
+            String pet_owner_id = petOwnerID;
             String result = "";
             try{
 
-                URL url = new URL(viewProfileUrl+"&pet_owner_id="+id+"&name="+name);
+                URL url = new URL(viewProfileUrl+"&pet_owner_id="+pet_owner_id+"&pet_name="+name);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 httpURLConnection.setRequestMethod("GET");
                 httpURLConnection.setDoOutput(true);
@@ -165,12 +130,9 @@ public class deleteViewEditPetProfileActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
             JSONObject jsonobject = null;
+            descriptiona = new String[jsonarray.length()];
+           medicinea= new String[jsonarray.length()];
 
-            agelist = new String[jsonarray.length()];
-            weightlist = new String[jsonarray.length()];
-            special_notelist = new String[jsonarray.length()];
-            specieslist = new String[jsonarray.length()];
-            colourlist = new String[jsonarray.length()];
 
 
 
@@ -182,12 +144,8 @@ public class deleteViewEditPetProfileActivity extends AppCompatActivity {
                 try {
                     jsonobject = jsonarray.getJSONObject(i);
 
-                    agelist[i] = jsonobject.getString("age");
-                    weightlist[i] = jsonobject.getString("weight");
-                    specieslist[i] = jsonobject.getString("species");
-                    colourlist[i] = jsonobject.getString("colour");
-                    special_notelist[i] = jsonobject.getString("special_note");
-
+                    descriptiona[i] = jsonobject.getString("description");
+                    medicinea[i] = jsonobject.getString("medicines");
 
 
                 } catch (JSONException e) {
@@ -197,9 +155,8 @@ public class deleteViewEditPetProfileActivity extends AppCompatActivity {
 
 
             }
-            aget.setText(agelist[0]);
-            weightt.setText(weightlist[0]);
-
+            //printdata(name[0]);
+            initRecyclerView();
 
         }
 
@@ -210,6 +167,4 @@ public class deleteViewEditPetProfileActivity extends AppCompatActivity {
 
 
     }
-
-
 }

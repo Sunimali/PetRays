@@ -16,11 +16,15 @@ public class netConstants {
 
 
     //net constant for pets
+
     private static final String ROOTP_URL = "http://192.168.8.100/PetRays/ApiPets.php?apicall=";
 
     public static final String URL_VIEWPETS = ROOTP_URL+"view";
     public static final String URL_ADDNEW = ROOTP_URL+"add";
     public static final String URL_FIND = ROOTP_URL+"find";
+    public static final String URL_UPDATEPET = ROOTP_URL+"update";
+    public static final String URL_DELETE = ROOTP_URL+"delete";
+    public static final String URL_VIEWTREAT = ROOTP_URL+"treatments";
 
 
 

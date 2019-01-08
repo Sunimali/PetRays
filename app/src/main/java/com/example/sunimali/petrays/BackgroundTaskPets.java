@@ -78,29 +78,25 @@ public class BackgroundTaskPets extends AsyncTask<String,Void,String> {
             }
         }
         if(method.equals("update")){
-            String name = params[1];
-            String username = params[2];
-            String password = params[3];
-            String address = params[4];
-            String email = params[5];
-            String mobile = params[6];
-            String id = params[7];
+            String id = params[1];
+            String name = params[2];
+            String age = params[3];
+            String weight = params[4];
+
 
             try {
-                URL url = new URL(netConstants.URL_UPDATE);
+                URL url = new URL(netConstants.URL_UPDATEPET);
                 HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
                 httpURLConnection.setRequestMethod("POST");
                 httpURLConnection.setDoOutput(true);
                 OutputStream OS = httpURLConnection.getOutputStream();
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(OS,"UTF-8"));
 
-                String data = URLEncoder.encode("name", "UTF-8") + "=" + URLEncoder.encode(name, "UTF-8") + "&" +
-                        URLEncoder.encode("username", "UTF-8") + "=" + URLEncoder.encode(username, "UTF-8") + "&" +
-                        URLEncoder.encode("password", "UTF-8") + "=" + URLEncoder.encode(password, "UTF-8") + "&" +
-                        URLEncoder.encode("address", "UTF-8") + "=" + URLEncoder.encode(address, "UTF-8") + "&" +
-                        URLEncoder.encode("email", "UTF-8") + "=" + URLEncoder.encode(email, "UTF-8") + "&" +
-                        URLEncoder.encode("mobile", "UTF-8") + "=" + URLEncoder.encode(mobile, "UTF-8") + "&" +
-                        URLEncoder.encode("id", "UTF-8") + "=" + URLEncoder.encode(id, "UTF-8");
+                String data =
+                        URLEncoder.encode("pet_owner_id", "UTF-8") + "=" + URLEncoder.encode(id, "UTF-8") + "&" +
+                                URLEncoder.encode("name", "UTF-8") + "=" + URLEncoder.encode(name, "UTF-8") + "&" +
+                        URLEncoder.encode("age", "UTF-8") + "=" + URLEncoder.encode(age, "UTF-8") + "&" +
+                        URLEncoder.encode("weight", "UTF-8") + "=" + URLEncoder.encode(weight, "UTF-8");
 
                 bufferedWriter.write(data);
                 bufferedWriter.flush();
@@ -117,21 +113,22 @@ public class BackgroundTaskPets extends AsyncTask<String,Void,String> {
                 e.printStackTrace();
             }
         }
-        if(method.equals("updateDP")){
+        if(method.equals("delete")){
 
-            String id = params[1];
-            String imageURL = params[2];
+            String name = params[1];
+            String id = params[2];
 
             try {
-                URL url = new URL(netConstants.URL_UPDATEDP);
+                URL url = new URL(netConstants.URL_DELETE);
                 HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
                 httpURLConnection.setRequestMethod("POST");
                 httpURLConnection.setDoOutput(true);
                 OutputStream OS = httpURLConnection.getOutputStream();
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(OS,"UTF-8"));
 
-                String data = URLEncoder.encode("id", "UTF-8") + "=" + URLEncoder.encode(id, "UTF-8") + "&" +
-                        URLEncoder.encode("imageURL", "UTF-8") + "=" + URLEncoder.encode(imageURL, "UTF-8");
+                String data =
+                        URLEncoder.encode("pet_owner_id", "UTF-8") + "=" + URLEncoder.encode(id, "UTF-8") + "&" +
+                        URLEncoder.encode("name", "UTF-8") + "=" + URLEncoder.encode(id, "UTF-8");
 
                 bufferedWriter.write(data);
                 bufferedWriter.flush();
@@ -140,7 +137,7 @@ public class BackgroundTaskPets extends AsyncTask<String,Void,String> {
                 InputStream inputStream = httpURLConnection.getInputStream();
                 inputStream.close();
 
-                return "photo uploaded successfully..!!";
+                return "pet removed successfully..!!";
 
             } catch (MalformedURLException e) {
                 e.printStackTrace();

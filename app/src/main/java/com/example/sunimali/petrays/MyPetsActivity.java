@@ -105,7 +105,7 @@ public class MyPetsActivity extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.recycleViewForPets);
          mNames= new ArrayList<String>(Arrays.asList(name));
-         mImageUrls = new ArrayList<String>(Arrays.asList(name));
+         mImageUrls = new ArrayList<String>(Arrays.asList(image));
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, mNames, mImageUrls);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

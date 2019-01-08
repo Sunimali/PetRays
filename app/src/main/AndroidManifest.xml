@@ -50,7 +50,8 @@
         <activity android:name=".NewPetActivity" />
         <activity android:name=".EditProfileActivity" />
         <activity android:name=".HomeVisitRequest" />
-        <activity android:name=".AppointmentActivity"></activity>
+        <activity android:name=".AppointmentActivity" />
+        <activity android:name=".TreatmentActivity"></activity>
     </application>
 
 </manifest>

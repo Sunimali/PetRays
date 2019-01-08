@@ -98,8 +98,9 @@ public class NewPetActivity extends AppCompatActivity {
         bp.execute(Method,p.getAge(),p.getName(),p.getWeight(),p.getSpecie(),colour,p.getDp(),petOwnerID);
 
         //go back to my pets
-        startActivity(new Intent(NewPetActivity.this,MyPetsActivity.class));
         finish();
+        startActivity(new Intent(NewPetActivity.this,MyPetsActivity.class));
+
 
 
     }
