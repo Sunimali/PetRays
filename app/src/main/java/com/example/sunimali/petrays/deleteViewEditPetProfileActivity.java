@@ -199,6 +199,8 @@ public class deleteViewEditPetProfileActivity extends AppCompatActivity {
             }
             aget.setText(agelist[0]);
             weightt.setText(weightlist[0]);
+            age = agelist[0];
+            weight = weightlist[0];
 
 
         }

@@ -46,7 +46,7 @@ public class editPetProfileActivity extends AppCompatActivity{
         weightText.setText(weight);
 
         //fetch data
-        getData();
+       // getData();
 
         //update button
         update.setOnClickListener(new View.OnClickListener() {
@@ -62,6 +62,8 @@ public class editPetProfileActivity extends AppCompatActivity{
     }
 
     public void updatePet(){
+        getData();
+
         String method = "update";
         BackgroundTaskPets backgroundTaskPets = new BackgroundTaskPets(this);
         backgroundTaskPets.execute(method,petOwnerID,name,age,weight);
@@ -69,7 +71,6 @@ public class editPetProfileActivity extends AppCompatActivity{
     }
 
     public void getData(){
-        name = nameText.getText().toString();
         age = ageText.getText().toString();
         weight = weightText.getText().toString();
 
