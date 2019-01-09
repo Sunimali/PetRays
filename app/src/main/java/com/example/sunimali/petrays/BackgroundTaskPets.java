@@ -128,7 +128,7 @@ public class BackgroundTaskPets extends AsyncTask<String,Void,String> {
 
                 String data =
                         URLEncoder.encode("pet_owner_id", "UTF-8") + "=" + URLEncoder.encode(id, "UTF-8") + "&" +
-                        URLEncoder.encode("name", "UTF-8") + "=" + URLEncoder.encode(id, "UTF-8");
+                        URLEncoder.encode("name", "UTF-8") + "=" + URLEncoder.encode(name, "UTF-8");
 
                 bufferedWriter.write(data);
                 bufferedWriter.flush();

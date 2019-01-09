@@ -96,7 +96,7 @@ public class deleteViewEditPetProfileActivity extends AppCompatActivity {
                 // remove pet
                String method = "delete";
                backgroundTaskPets.execute(method,name,petOwnerID);
-
+                startActivity(new Intent(deleteViewEditPetProfileActivity.this,MyPetsActivity.class));
 
             }
         });
