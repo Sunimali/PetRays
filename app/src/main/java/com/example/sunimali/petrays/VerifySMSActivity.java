@@ -81,8 +81,7 @@ public class VerifySMSActivity extends AppCompatActivity {
     }
 
     //the method is sending verification code
-    //the country id is concatenated
-    //you can take the country id as user input as well
+
     private void sendVerificationCode(String mobile) {
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
                 mobile,
@@ -148,7 +147,7 @@ public class VerifySMSActivity extends AppCompatActivity {
                             mAuth1.createUserWithEmailAndPassword(petOwner.get(3), petOwner.get(1)).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
-                                    //progressBar.setVisibility(View.GONE);
+
                                     if (task.isSuccessful()) {
                                         finish();
                                         Intent intent = new Intent(VerifySMSActivity.this, SetProfileActivity.class);
@@ -168,8 +167,8 @@ public class VerifySMSActivity extends AppCompatActivity {
                                 }
                             });
 
+                            //pass details to next activity
                             Intent intent = new Intent(VerifySMSActivity.this, SetProfileActivity.class);
-                            //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             intent.putExtra("mobile", mobile);
                             intent.putExtra("petowner",petOwner);
                             startActivity(intent);

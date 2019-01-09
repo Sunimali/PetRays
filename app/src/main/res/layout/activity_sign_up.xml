@@ -100,9 +100,10 @@
         android:id="@+id/editTextmobile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
         android:layout_marginEnd="41dp"
+        android:layout_marginBottom="32dp"
         android:ems="10"
+        android:hint="+94xxxxxxxxx"
         android:inputType="phone"
         app:layout_constraintBottom_toTopOf="@+id/SignUpbutton"
         app:layout_constraintEnd_toEndOf="parent" />

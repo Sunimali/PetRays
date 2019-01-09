@@ -10,6 +10,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.sunimali.petrays.Database.BackgroundTaskPets;
+import com.example.sunimali.petrays.Database.netConstants;
+import com.example.sunimali.petrays.Pets.MyPetsActivity;
+import com.example.sunimali.petrays.Pets.TreatmentActivity;
+import com.example.sunimali.petrays.Pets.editPetProfileActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -54,7 +59,7 @@ public class deleteViewEditPetProfileActivity extends AppCompatActivity {
 
         backgroundTaskPets = new BackgroundTaskPets(this);
 
-
+        //view objects
         namet = (TextView)findViewById(R.id.Name);
         aget = (TextView)findViewById(R.id.Age);
         weightt = (TextView)findViewById(R.id.Weight);
@@ -62,6 +67,7 @@ public class deleteViewEditPetProfileActivity extends AppCompatActivity {
         String method = "find";
 
 
+        //go to editprofile..............................................................
 
         Button buttonedit = (Button)findViewById(R.id.buttoneditprofile);
         buttonedit.setOnClickListener(new View.OnClickListener() {
@@ -76,6 +82,7 @@ public class deleteViewEditPetProfileActivity extends AppCompatActivity {
             }
         });
 
+        //go to treatment pages...........................................................................
 
         Button buttonview = (Button)findViewById(R.id.buttonTreatments);
         buttonview.setOnClickListener(new View.OnClickListener() {
@@ -90,6 +97,8 @@ public class deleteViewEditPetProfileActivity extends AppCompatActivity {
             }
         });
 
+        //remove a pet.....................................................................................
+
         Button buttondelete = (Button)findViewById(R.id.buttondelete);
         buttondelete.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -101,6 +110,8 @@ public class deleteViewEditPetProfileActivity extends AppCompatActivity {
             }
         });
     }
+
+    //aysntask claas..........................
 
     public class viewBackgroundTask extends AsyncTask<String,Void,String> {
 
@@ -122,8 +133,10 @@ public class deleteViewEditPetProfileActivity extends AppCompatActivity {
             String viewProfileUrl = netConstants.URL_FIND;
             String id = petOwnerID;
             String result = "";
+            //get the whole pets
             try{
 
+                //make the connection
                 URL url = new URL(viewProfileUrl+"&pet_owner_id="+id+"&name="+name);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 httpURLConnection.setRequestMethod("GET");
@@ -158,6 +171,7 @@ public class deleteViewEditPetProfileActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
 
+            //receive data back.......
             JSONArray jsonarray = null;
             try {
                 jsonarray = new JSONArray(result);
@@ -166,22 +180,20 @@ public class deleteViewEditPetProfileActivity extends AppCompatActivity {
             }
             JSONObject jsonobject = null;
 
+            //make array
             agelist = new String[jsonarray.length()];
             weightlist = new String[jsonarray.length()];
             special_notelist = new String[jsonarray.length()];
             specieslist = new String[jsonarray.length()];
             colourlist = new String[jsonarray.length()];
 
-
-
             Log.d("data", "received");
 
-
             for (int i = 0; i <= jsonarray.length(); i++) {
-
                 try {
                     jsonobject = jsonarray.getJSONObject(i);
 
+                    //get data from json and set in arrays
                     agelist[i] = jsonobject.getString("age");
                     weightlist[i] = jsonobject.getString("weight");
                     specieslist[i] = jsonobject.getString("species");
@@ -189,14 +201,12 @@ public class deleteViewEditPetProfileActivity extends AppCompatActivity {
                     special_notelist[i] = jsonobject.getString("special_note");
 
 
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
 
-
-
             }
+            //set the text fields
             aget.setText(agelist[0]);
             weightt.setText(weightlist[0]);
             age = agelist[0];
@@ -209,7 +219,6 @@ public class deleteViewEditPetProfileActivity extends AppCompatActivity {
         protected void onProgressUpdate(Void... values) {
             super.onProgressUpdate(values);
         }
-
 
     }
 

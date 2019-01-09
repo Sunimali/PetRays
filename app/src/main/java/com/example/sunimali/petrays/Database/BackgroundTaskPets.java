@@ -1,4 +1,4 @@
-package com.example.sunimali.petrays;
+package com.example.sunimali.petrays.Database;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -18,7 +18,7 @@ public class BackgroundTaskPets extends AsyncTask<String,Void,String> {
     Context context;
 
 
-    BackgroundTaskPets(Context context){
+    public BackgroundTaskPets(Context context){
         this.context = context;
 
     }
@@ -31,10 +31,17 @@ public class BackgroundTaskPets extends AsyncTask<String,Void,String> {
 
     @Override
     protected String doInBackground(String... params) {
-
+        //get url
         String RegisterUrl = netConstants.URL_ADDNEW;
+
+        //get method
         String method = params[0];
+
+        //check function......................................................//
+
+       //add new pet.... ........................................................
         if(method.equals("add")){
+            //get parmas
             String age = params[1];
             String name = params[2];
             String weight = params[3];
@@ -44,7 +51,9 @@ public class BackgroundTaskPets extends AsyncTask<String,Void,String> {
             String pet_owner_id = params[7];
 
             try {
-                //make coection
+                //make connection
+                //get buffredwriter
+                //parse variables
                 URL url = new URL(RegisterUrl);
                 HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
                 httpURLConnection.setRequestMethod("POST");
@@ -77,6 +86,8 @@ public class BackgroundTaskPets extends AsyncTask<String,Void,String> {
                 e.printStackTrace();
             }
         }
+
+        //update pet details.......................................................
         if(method.equals("update")){
             String id = params[1];
             String name = params[2];
@@ -113,6 +124,8 @@ public class BackgroundTaskPets extends AsyncTask<String,Void,String> {
                 e.printStackTrace();
             }
         }
+
+        //remove a pet....................................................
         if(method.equals("delete")){
 
             String name = params[1];
@@ -147,6 +160,8 @@ public class BackgroundTaskPets extends AsyncTask<String,Void,String> {
 
 
         }
+
+        //send appoinment request......................................
         if(method.equals("appointment")){
             String time = params[1];
             String date = params[2];
@@ -199,6 +214,7 @@ public class BackgroundTaskPets extends AsyncTask<String,Void,String> {
 
     @Override
     protected void onPostExecute(String result) {
+        //make tosat to see results
         Toast.makeText(context,result,Toast.LENGTH_SHORT).show();
 
     }

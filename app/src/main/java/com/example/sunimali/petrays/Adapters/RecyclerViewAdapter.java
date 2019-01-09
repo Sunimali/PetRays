@@ -1,11 +1,9 @@
-package com.example.sunimali.petrays;
+package com.example.sunimali.petrays.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
-import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
 import android.util.Log;
@@ -17,8 +15,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.sunimali.petrays.R;
+import com.example.sunimali.petrays.deleteViewEditPetProfileActivity;
 
-import java.io.File;
 import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -30,12 +29,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private ArrayList<String> mImages = new ArrayList<>();
     private Context mContext;
 
+    //get the arrays............
     public RecyclerViewAdapter(Context context, ArrayList<String> imageNames, ArrayList<String> images ) {
         mImageNames = imageNames;
         mImages = images;
         mContext = context;
     }
 
+    //create view holder...................
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_listitem, parent, false);
@@ -43,6 +44,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return holder;
     }
 
+
+    //set view accroding seleted one
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
 
@@ -56,7 +59,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
 
         holder.imageName.setText(mImageNames.get(position));
-
+        //parse the data and go to pet profile
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,6 +80,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return mImageNames.size();
     }
 
+
+    //viewholder class intialize view objects.............................
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 

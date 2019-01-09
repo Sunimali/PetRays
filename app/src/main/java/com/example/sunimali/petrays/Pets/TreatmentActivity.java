@@ -1,17 +1,17 @@
-package com.example.sunimali.petrays;
+package com.example.sunimali.petrays.Pets;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.View;
-import android.widget.Toast;
 
+import com.example.sunimali.petrays.Adapters.RecyclerViewAdapterTreatments;
+import com.example.sunimali.petrays.Database.netConstants;
+import com.example.sunimali.petrays.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -30,65 +30,46 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class MyPetsActivity extends AppCompatActivity {
+public class TreatmentActivity extends AppCompatActivity {
 
-    private ArrayList<String> petsDP;
-    private ArrayList<String> petsNames;
-    FloatingActionButton addNewPet;
+    private ArrayList<String> description = new ArrayList<>();
+    private ArrayList<String> medicine = new ArrayList<>();
+    String[] descriptiona,medicinea;
     String petOwnerID;
+    String name;
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
-    String [] age,name,weight,special_note,species,colour,image;
-
-    private ArrayList<String> mNames = new ArrayList<>();
-    private ArrayList<String> mImageUrls = new ArrayList<>();
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_pets);
-
-
-        //get the views
-        addNewPet = (FloatingActionButton)findViewById(R.id.floatingActionButtonAddNewPet);
-
-        //start NewPetActivity
-        addNewPet.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MyPetsActivity.this,NewPetActivity.class));
-            }
-        });
-
-        //get all dogs profile pictures and names
-        getDogDpsAndNames();
-
-    }
-
-    public void getDogDpsAndNames(){
+        setContentView(R.layout.activity_treatment);
         //get the id of owner
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
         petOwnerID = firebaseUser.getUid();
 
-        //call asynctask class
-        viewBackgroundTask v = new viewBackgroundTask(this);
-        v.execute();
+        Intent intent = getIntent();
+        name = intent.getStringExtra("name");
 
-
-
+        //asyctask execute
+        viewBackgroundTask viewBackgroundTask = new viewBackgroundTask(this);
+        viewBackgroundTask.execute();
     }
 
+    //array dapater......
     private void initRecyclerView(){
 
-        RecyclerView recyclerView = findViewById(R.id.recycleViewForPets);
-         mNames= new ArrayList<String>(Arrays.asList(name));
-         mImageUrls = new ArrayList<String>(Arrays.asList(image));
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, mNames, mImageUrls);
+        RecyclerView recyclerView = findViewById(R.id.RecycleviewTreatment);
+        description= new ArrayList<String>(Arrays.asList(descriptiona));
+        medicine = new ArrayList<String>(Arrays.asList(medicinea));
+        RecyclerViewAdapterTreatments adapter = new RecyclerViewAdapterTreatments(this, description, medicine);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
+
+    //fetch data in database.......................................................................
 
     public class viewBackgroundTask extends AsyncTask<String,Void,String> {
 
@@ -107,12 +88,12 @@ public class MyPetsActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... params) {
 
-            String viewProfileUrl = netConstants.URL_VIEWPETS;
-            String id = petOwnerID;
+            String viewProfileUrl = netConstants.URL_VIEWTREAT;
+            String pet_owner_id = petOwnerID;
             String result = "";
             try{
-
-                URL url = new URL(viewProfileUrl+"&pet_owner_id="+id);
+                //make connection and using bufferwritter and reader
+                URL url = new URL(viewProfileUrl+"&pet_owner_id="+pet_owner_id+"&pet_name="+name);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 httpURLConnection.setRequestMethod("GET");
                 httpURLConnection.setDoOutput(true);
@@ -143,6 +124,7 @@ public class MyPetsActivity extends AppCompatActivity {
             return result;
         }
 
+        //fetching data using json..............................
         @Override
         protected void onPostExecute(String result) {
 
@@ -153,13 +135,8 @@ public class MyPetsActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
             JSONObject jsonobject = null;
-            age = new String[jsonarray.length()];
-            name = new String[jsonarray.length()];
-            weight = new String[jsonarray.length()];
-            species = new String[jsonarray.length()];
-            colour = new String[jsonarray.length()];
-            image = new String[jsonarray.length()];
-
+            descriptiona = new String[jsonarray.length()];
+           medicinea= new String[jsonarray.length()];
 
 
             Log.d("data", "received");
@@ -170,12 +147,8 @@ public class MyPetsActivity extends AppCompatActivity {
                 try {
                     jsonobject = jsonarray.getJSONObject(i);
 
-                    age[i] = jsonobject.getString("age");
-                    name[i] = jsonobject.getString("name");
-                    weight[i] = jsonobject.getString("weight");
-                    species[i] = jsonobject.getString("species");
-                    colour[i] = jsonobject.getString("colour");
-                    image[i] = jsonobject.getString("image");
+                    descriptiona[i] = jsonobject.getString("description");
+                    medicinea[i] = jsonobject.getString("medicines");
 
 
                 } catch (JSONException e) {
@@ -185,7 +158,7 @@ public class MyPetsActivity extends AppCompatActivity {
 
 
             }
-            printdata(image[0]);
+            //set adapter
             initRecyclerView();
 
         }
@@ -197,11 +170,4 @@ public class MyPetsActivity extends AppCompatActivity {
 
 
     }
-
-    public void printdata(String name){
-        Toast.makeText(this,name,Toast.LENGTH_LONG).show();
-
-    }
-
-
 }

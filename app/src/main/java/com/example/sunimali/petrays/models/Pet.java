@@ -1,4 +1,4 @@
-package com.example.sunimali.petrays;
+package com.example.sunimali.petrays.models;
 
 public class Pet {
     private String name;

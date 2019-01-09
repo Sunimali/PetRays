@@ -62,7 +62,7 @@ public class SignUpActivity extends AppCompatActivity {
                 final String mobile = editTextMobile.getText().toString().trim();
                 getdetails();
 
-                //check whether mobile number is vlid or not
+                //check whether mobile number is valid or not
                 if (mobile.isEmpty() || mobile.length() != 12) {
                     editTextMobile.setError("Enter a valid mobile");
                     editTextMobile.requestFocus();

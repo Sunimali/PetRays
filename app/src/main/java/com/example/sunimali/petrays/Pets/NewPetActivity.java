@@ -1,4 +1,4 @@
-package com.example.sunimali.petrays;
+package com.example.sunimali.petrays.Pets;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -14,6 +14,9 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 
+import com.example.sunimali.petrays.Database.BackgroundTaskPets;
+import com.example.sunimali.petrays.R;
+import com.example.sunimali.petrays.models.Pet;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -97,10 +100,9 @@ public class NewPetActivity extends AppCompatActivity {
         BackgroundTaskPets bp = new BackgroundTaskPets(this);
         bp.execute(Method,p.getAge(),p.getName(),p.getWeight(),p.getSpecie(),colour,p.getDp(),petOwnerID);
 
-        //go back to my pets
 
-        //startActivity(new Intent(NewPetActivity.this,MyPetsActivity.class));
-
+        //got back to my pets
+        startActivity(new Intent(NewPetActivity.this,MyPetsActivity.class));
 
 
     }

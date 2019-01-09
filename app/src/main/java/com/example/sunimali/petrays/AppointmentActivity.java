@@ -18,16 +18,13 @@ import com.google.android.gms.location.places.ui.PlacePicker;
 
 public class AppointmentActivity extends AppCompatActivity {
 
-
+//initialize varibles
     Button locationb,timeb,next;
     TextView location,time,date;
     int PLACE_PICKER_REQUEST = 1;
-    String locationadd;
+    String locationadd, datee,timee;
     CalendarView calendarView;
-    String datee;
-    int minute;
-    int hour;
-    String timee;
+    int minute,hour;
     static  int DIALOG_ID = 0;
 
     @Override
@@ -35,6 +32,7 @@ public class AppointmentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_appointment);
 
+        //get the views
         location = (TextView)findViewById(R.id.textViewLocation);
         time = (TextView)findViewById(R.id.textViewtime);
         locationb = ( Button)findViewById(R.id.buttonloca);
@@ -43,7 +41,7 @@ public class AppointmentActivity extends AppCompatActivity {
         calendarView = (CalendarView)findViewById(R.id.calendarView);
 
 
-
+        //get the location
         locationb.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -51,7 +49,7 @@ public class AppointmentActivity extends AppCompatActivity {
 
                         Intent intent;
                         try {
-
+                            //select the place
                             PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
                             startActivityForResult(builder.build(AppointmentActivity.this), PLACE_PICKER_REQUEST);
 
@@ -65,6 +63,7 @@ public class AppointmentActivity extends AppCompatActivity {
                 }
         );
 
+        //get the date
         calendarView.setOnDateChangeListener(
                 new CalendarView.OnDateChangeListener() {
                     @Override
@@ -76,10 +75,12 @@ public class AppointmentActivity extends AppCompatActivity {
                 }
         );
 
+        //go to next activity
          next.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        //parse data
                         Intent intent = new Intent(AppointmentActivity.this, ConfirmActivity.class);
                         intent.putExtra("time", timee);
                         intent.putExtra("date", datee);
@@ -89,10 +90,12 @@ public class AppointmentActivity extends AppCompatActivity {
                 }
         );
 
+         //get the time
         timeb.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        //show time picker dialog
                         TimePickerDialog timePickerDialog = new TimePickerDialog(AppointmentActivity.this, new TimePickerDialog.OnTimeSetListener() {
                             @Override
                             public void onTimeSet(TimePicker timePicker, int hourOfDay, int minutes) {
@@ -108,10 +111,12 @@ public class AppointmentActivity extends AppCompatActivity {
                 }
         );
     }
+    //make tosat to see time
     public void showtime(){
         Toast.makeText(this,timee,Toast.LENGTH_LONG).show();
     }
 
+    //after place picked get the address
     public void onActivityResult(int requestCode, int resultCode ,Intent data) {
         if(requestCode==PLACE_PICKER_REQUEST && resultCode==RESULT_OK){
             Place place = PlacePicker.getPlace(data,this);

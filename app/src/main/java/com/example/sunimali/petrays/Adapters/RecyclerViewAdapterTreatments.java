@@ -1,21 +1,16 @@
-package com.example.sunimali.petrays;
+package com.example.sunimali.petrays.Adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
+import com.example.sunimali.petrays.R;
 
 import java.util.ArrayList;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class RecyclerViewAdapterTreatments extends RecyclerView.Adapter<RecyclerViewAdapterTreatments.ViewHolder>{
     private static final String TAG = "RecyclerViewAdapter";
@@ -24,12 +19,14 @@ public class RecyclerViewAdapterTreatments extends RecyclerView.Adapter<Recycler
     private ArrayList<String> mmedicine = new ArrayList<>();
     private Context mContext;
 
+    //get arryas.........................
     public RecyclerViewAdapterTreatments(Context context, ArrayList<String> decrpition, ArrayList<String> medicine ) {
         mdecrpition = decrpition;
         mmedicine = medicine;
         mContext = context;
     }
 
+    //crete view holder.............................
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_listitem_treatment, parent, false);
@@ -37,6 +34,7 @@ public class RecyclerViewAdapterTreatments extends RecyclerView.Adapter<Recycler
         return holder;
     }
 
+    //get treatment details and set them............
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
 ;
@@ -51,7 +49,7 @@ public class RecyclerViewAdapterTreatments extends RecyclerView.Adapter<Recycler
         return mdecrpition.size();
     }
 
-
+    //viewholder class intialize view objects.............................
     public class ViewHolder extends RecyclerView.ViewHolder{
 
 

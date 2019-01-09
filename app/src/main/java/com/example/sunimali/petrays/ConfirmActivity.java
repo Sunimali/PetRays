@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.example.sunimali.petrays.Database.BackgroundTaskPets;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -27,6 +28,8 @@ public class ConfirmActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirm);
+
+        //get views
         spinnertypes = (Spinner)findViewById(R.id.spinner2);
         send = (Button)findViewById(R.id.buttonnsend);
         description = (EditText)findViewById(R.id.editText);
@@ -36,6 +39,7 @@ public class ConfirmActivity extends AppCompatActivity {
         adaptertypes.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnertypes.setAdapter(adaptertypes);
 
+        //get data
         Intent intent = getIntent();
         time = intent.getStringExtra("time");
         date = intent.getStringExtra("date");
@@ -46,7 +50,7 @@ public class ConfirmActivity extends AppCompatActivity {
         firebaseUser = firebaseAuth.getCurrentUser();
         petOwnerID = firebaseUser.getUid();
 
-
+        //send rqeuest
         send.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -59,7 +63,10 @@ public class ConfirmActivity extends AppCompatActivity {
         );
     }
 
+
+    //send appointment
     public  void setAppointment(){
+        //call asyntask
         method = "appointment";
         BackgroundTaskPets b = new BackgroundTaskPets(this);
         b.execute(method,time,date,address,type,desc,petOwnerID);

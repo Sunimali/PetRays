@@ -1,10 +1,7 @@
-package com.example.sunimali.petrays;
+package com.example.sunimali.petrays.PetOwner;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
-import android.provider.ContactsContract;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,31 +11,26 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
+import com.example.sunimali.petrays.Database.Backgroundtask;
+import com.example.sunimali.petrays.R;
+import com.example.sunimali.petrays.models.PetOwner;
+import com.example.sunimali.petrays.Database.netConstants;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLEncoder;
 
 public class EditProfileActivity extends AppCompatActivity {
 
@@ -85,13 +77,14 @@ public class EditProfileActivity extends AppCompatActivity {
                 email = editTextemail.getText().toString().trim();
                 password = editTextpassword.getText().toString().trim();
 
-                p.setName(String.valueOf(editTextname.getText()));
-                p.setUserName(String.valueOf(editTextuserName.getText()));
+                p.setName(editTextname.getText().toString().trim());
+                p.setUserName(editTextuserName.getText().toString().trim());
                 p.setPassword(password);
-                p.setAddress(String.valueOf(editTextaddress.getText()));
+                p.setAddress(editTextaddress.getText().toString().trim());
                 p.setEmail(email);
-                p.setMobileNumber(String.valueOf(editTextmobile.getText()));
+                p.setMobileNumber(editTextmobile.getText().toString().trim());
 
+                //check the patterm of email
                 if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                     editTextemail.setError("Please enter a valid email");
                     editTextemail.requestFocus();
@@ -122,6 +115,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 user.updatePassword(p.getPassword());
                 user.updateEmail(p.getMobileNumber());
 
+                //update details
                 updatePetOwnerDetails();
 
 
@@ -133,6 +127,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
     }
 
+    //set data
     private void loadUserInformation() {
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
@@ -140,28 +135,17 @@ public class EditProfileActivity extends AppCompatActivity {
         Toast.makeText(this,petOwnerID,Toast.LENGTH_LONG).show();
         p = new PetOwner();
         getdata();
-       // viewBackgroundTask vb = new viewBackgroundTask(this);
-       // vb.execute(petOwnerID);
 
     }
+
+    //call asynctask class
     public void getdata(){
         viewBackgroundTask v = new viewBackgroundTask(this);
         v.execute();
     }
 
-    private void showData() {
 
-        Toast.makeText(this,namelist[0],Toast.LENGTH_LONG).show();
-
-        editTextname.setText(namelist[0]);
-           editTextuserName.setText(userNamelist[0]);
-            editTextpassword.setText(passwordlist[0]);
-            editTextaddress.setText(addresslist[0]);
-        editTextemail.setText(addresslist[0]);
-        editTextmobile.setText(mobilelist[0]);
-
-
-    }
+    //data fetching from user profile asynctask class.........................................................
 
     public class viewBackgroundTask extends AsyncTask<String,Void,String> {
 
@@ -184,7 +168,7 @@ public class EditProfileActivity extends AppCompatActivity {
             String id = petOwnerID;
             String result = "";
             try{
-
+                //make connection to recive data
                 URL url = new URL(viewProfileUrl+"&id="+petOwnerID);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 httpURLConnection.setRequestMethod("GET");
@@ -219,6 +203,7 @@ public class EditProfileActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
 
+            //get json data
             JSONArray jsonarray = null;
             try {
                 jsonarray = new JSONArray(result);
@@ -258,7 +243,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
 
             }
-            printdata(namelist[0]);
+            printdata(result);
 
         }
 
@@ -271,7 +256,7 @@ public class EditProfileActivity extends AppCompatActivity {
     }
 
     private void printdata(String result) {
-        Toast.makeText(this,result,Toast.LENGTH_LONG).show();
+        //set editext fileds
         editTextmobile.setText(mobilelist[0]);
         editTextemail.setText(emaillist[0]);
         editTextaddress.setText(addresslist[0]);
@@ -282,9 +267,8 @@ public class EditProfileActivity extends AppCompatActivity {
 
 
 
+    //update method
     public void updatePetOwnerDetails(){
-
-
         String Method = "update";
         Backgroundtask backgroundTask = new Backgroundtask(this);
         backgroundTask.execute(Method,p.getName(),p.getUserName(),p.getPassword(),p.getAddress(),p.getEmail(),p.getMobileNumber(),petOwnerID);

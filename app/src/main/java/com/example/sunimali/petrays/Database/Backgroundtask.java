@@ -1,7 +1,6 @@
-package com.example.sunimali.petrays;
+package com.example.sunimali.petrays.Database;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
@@ -19,7 +18,7 @@ public class Backgroundtask extends AsyncTask<String,Void,String> {
     Context context;
 
 
-    Backgroundtask(Context context){
+    public Backgroundtask(Context context){
         this.context = context;
 
     }
@@ -35,7 +34,10 @@ public class Backgroundtask extends AsyncTask<String,Void,String> {
 
         String RegisterUrl = netConstants.URL_REGISTER;
         String method = params[0];
+
+        //add new pet owner...........................................................
         if(method.equals("register")){
+            //get the params
             String name = params[1];
             String username = params[2];
             String password = params[3];
@@ -46,6 +48,7 @@ public class Backgroundtask extends AsyncTask<String,Void,String> {
             String imageURL = params[8];
 
             try {
+                //get url and make connection
                 URL url = new URL(RegisterUrl);
                 HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
                 httpURLConnection.setRequestMethod("POST");
@@ -53,6 +56,7 @@ public class Backgroundtask extends AsyncTask<String,Void,String> {
                 OutputStream OS = httpURLConnection.getOutputStream();
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(OS,"UTF-8"));
 
+                //parse data using bufferreader
                 String data = URLEncoder.encode("name", "UTF-8") + "=" + URLEncoder.encode(name, "UTF-8") + "&" +
                         URLEncoder.encode("username", "UTF-8") + "=" + URLEncoder.encode(username, "UTF-8") + "&" +
                         URLEncoder.encode("password", "UTF-8") + "=" + URLEncoder.encode(password, "UTF-8") + "&" +
@@ -68,8 +72,6 @@ public class Backgroundtask extends AsyncTask<String,Void,String> {
                 OS.close();
                 InputStream inputStream = httpURLConnection.getInputStream();
                 inputStream.close();
-               // finish();
-               // startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
                 return "Registration Succesful..!!";
 
             } catch (MalformedURLException e) {
@@ -78,6 +80,7 @@ public class Backgroundtask extends AsyncTask<String,Void,String> {
                 e.printStackTrace();
             }
         }
+        //update user profile...............................................................
         if(method.equals("update")){
             String name = params[1];
             String username = params[2];
@@ -118,6 +121,7 @@ public class Backgroundtask extends AsyncTask<String,Void,String> {
                 e.printStackTrace();
             }
         }
+        //update dp.............................................................................
         if(method.equals("updateDP")){
 
             String id = params[1];
@@ -161,6 +165,7 @@ public class Backgroundtask extends AsyncTask<String,Void,String> {
 
     @Override
     protected void onPostExecute(String result) {
+        //show to result
         Toast.makeText(context,result,Toast.LENGTH_SHORT).show();
 
     }

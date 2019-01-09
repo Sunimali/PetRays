@@ -1,14 +1,15 @@
-package com.example.sunimali.petrays;
+package com.example.sunimali.petrays.Pets;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 
+import com.example.sunimali.petrays.Database.BackgroundTaskPets;
+import com.example.sunimali.petrays.R;
+import com.example.sunimali.petrays.deleteViewEditPetProfileActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -41,12 +42,9 @@ public class editPetProfileActivity extends AppCompatActivity{
         weightText = (EditText)findViewById(R.id.editTextWeightU);
         update = (Button) findViewById(R.id.buttonUpdatePet);
 
-
         ageText.setText(age);
         weightText.setText(weight);
 
-        //fetch data
-       // getData();
 
         //update button
         update.setOnClickListener(new View.OnClickListener() {
@@ -55,24 +53,24 @@ public class editPetProfileActivity extends AppCompatActivity{
             }
         });
 
-
-
-
-
     }
 
     public void updatePet(){
+        //fetch data from text field
         getData();
 
+        //update pets details
         String method = "update";
         BackgroundTaskPets backgroundTaskPets = new BackgroundTaskPets(this);
         backgroundTaskPets.execute(method,petOwnerID,name,age,weight);
 
+        //start editpetprofile activty
         finish();
         startActivity(new Intent(editPetProfileActivity.this,deleteViewEditPetProfileActivity.class));
 
     }
 
+    //fetch data
     public void getData(){
         age = ageText.getText().toString();
         weight = weightText.getText().toString();

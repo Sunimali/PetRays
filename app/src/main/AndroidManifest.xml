@@ -29,12 +29,12 @@
         <activity android:name=".AppointmentHistoryActivity" />
         <activity android:name=".AppointmentMenuActivity" />
         <activity android:name=".deleteViewEditPetProfileActivity" />
-        <activity android:name=".editPetProfileActivity" />
+        <activity android:name=".Pets.editPetProfileActivity" />
         <activity android:name=".HomeVisitRequest1Activity" />
         <activity android:name=".homeVisitRequest2Activity" />
-        <activity android:name=".MyPetsActivity" />
+        <activity android:name=".Pets.MyPetsActivity" />
         <activity android:name=".PaymentActivity" />
-        <activity android:name=".viewPetProfileActivity" />
+        <activity android:name=".Pets.viewPetProfileActivity" />
         <activity android:name=".doctorInfoActivity" />
         <activity
             android:name=".WelcomeActivity"
@@ -50,11 +50,11 @@
         <activity android:name=".delete_view_edit_pet_profile" />
         <activity android:name=".edit_pet_profile" />
         <activity android:name=".home_visit_request1" />
-        <activity android:name=".NewPetActivity" />
-        <activity android:name=".EditProfileActivity" />
+        <activity android:name=".Pets.NewPetActivity" />
+        <activity android:name=".PetOwner.EditProfileActivity" />
         <activity android:name=".HomeVisitRequest" />
         <activity android:name=".AppointmentActivity" />
-        <activity android:name=".TreatmentActivity" />
+        <activity android:name=".Pets.TreatmentActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

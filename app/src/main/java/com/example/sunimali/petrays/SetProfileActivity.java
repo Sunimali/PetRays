@@ -2,57 +2,30 @@ package com.example.sunimali.petrays;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.example.sunimali.petrays.Database.Backgroundtask;
+import com.example.sunimali.petrays.Database.netConstants;
+import com.example.sunimali.petrays.models.PetOwner;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class SetProfileActivity extends AppCompatActivity {
 
@@ -88,6 +61,7 @@ public class SetProfileActivity extends AppCompatActivity {
         p = new ArrayList<>();
         p =  intent.getStringArrayListExtra("petowner");
 
+        //view objects........................
         userName = findViewById(R.id.editTextUserNameU);
         addProfPicButton = findViewById(R.id.imageButtonaddProfPic);
         nextbutton3 = (Button)findViewById(R.id.nextbutton3);
@@ -121,23 +95,18 @@ public class SetProfileActivity extends AppCompatActivity {
       /*  //getting the reference of petowners node
         databasePetOwners = FirebaseDatabase.getInstance().getReference("PetOwners");
 
-
         String id = databasePetOwners.push().getKey();
-
 
         //PetOwner petOwner = new PetOwner(p.get(0),username,p.get(1),p.get(2),p.get(3),p.get(4),id,url);
 
-
-
-
-
         //Saving the PetOwner
         databasePetOwners.child(id).setValue(petOwner);
-
         Toast.makeText(this, "you are sign up with us", Toast.LENGTH_LONG).show();
 
     }*/
 
+
+    //get image file
     private File getFile(){
         File folder = new File("sdcard/PetRays");
         if(!folder.exists()){
@@ -148,6 +117,7 @@ public class SetProfileActivity extends AppCompatActivity {
         File imageFile = new File(folder,imageFileName);
         return imageFile;
     }
+    //get photo using camera
     public void getPhoto(){
         addProfPicButton.setOnClickListener(
                 new View.OnClickListener() {
@@ -202,8 +172,6 @@ public class SetProfileActivity extends AppCompatActivity {
 
         PetOwner petOwner = new PetOwner(p.get(3),mobile,id);
 
-
-
         //Saving the PetOwner
         databasePetOwners.child(id).setValue(petOwner);
         firebaseAuth = FirebaseAuth.getInstance();
@@ -212,7 +180,8 @@ public class SetProfileActivity extends AppCompatActivity {
 
         String Method = "register";
         PetOwner p1 = new PetOwner(p.get(0),username, p.get(1), p.get(2),  p.get(3),  p.get(4),petownerid, imageToString(bitmap));
-        Toast.makeText(this,Method+p1.getName()+p1.getUserName()+p1.getPassword()+p1.getAddress()+p1.getEmail()+p1.getMobileNumber()+p1.getPetOwnerID()+p1.getUrl(),Toast.LENGTH_LONG).show();
+
+        //call asyctask exectue
         Backgroundtask backgroundTask = new Backgroundtask(this);
         backgroundTask.execute(Method,p1.getName(),p1.getUserName(),p1.getPassword(),p1.getAddress(),p1.getEmail(),p1.getMobileNumber(),p1.getPetOwnerID(),p1.getUrl());
 

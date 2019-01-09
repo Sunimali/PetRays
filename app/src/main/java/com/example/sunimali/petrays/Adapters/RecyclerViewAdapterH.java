@@ -1,4 +1,4 @@
-package com.example.sunimali.petrays;
+package com.example.sunimali.petrays.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.sunimali.petrays.R;
+import com.example.sunimali.petrays.deleteViewEditPetProfileActivity;
 
 import java.io.File;
 import java.util.ArrayList;

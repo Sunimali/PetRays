@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.example.sunimali.petrays.Pets.MyPetsActivity;
+
 public class HomeActivity extends AppCompatActivity {
 
     @Override
