@@ -1,7 +1,5 @@
 package com.example.sunimali.petrays;
 
-import android.app.Activity;
-import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -21,7 +19,7 @@ import com.google.android.gms.location.places.ui.PlacePicker;
 public class AppointmentActivity extends AppCompatActivity {
 
 
-    Button locationb,timeb,send;
+    Button locationb,timeb,next;
     TextView location,time,date;
     int PLACE_PICKER_REQUEST = 1;
     String locationadd;
@@ -41,7 +39,7 @@ public class AppointmentActivity extends AppCompatActivity {
         time = (TextView)findViewById(R.id.textViewtime);
         locationb = ( Button)findViewById(R.id.buttonloca);
         timeb = ( Button)findViewById(R.id.buttonTime);
-        send = ( Button)findViewById(R.id.buttonsend);
+        next = ( Button)findViewById(R.id.buttonnsend);
         calendarView = (CalendarView)findViewById(R.id.calendarView);
 
 
@@ -51,7 +49,6 @@ public class AppointmentActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
 
-                       // PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
                         Intent intent;
                         try {
 
@@ -79,15 +76,19 @@ public class AppointmentActivity extends AppCompatActivity {
                 }
         );
 
-        send.setOnClickListener(
+         next.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
+                        Intent intent = new Intent(AppointmentActivity.this, ConfirmActivity.class);
+                        intent.putExtra("time", timee);
+                        intent.putExtra("date", datee);
+                        intent.putExtra("address", locationadd);
+                        startActivity(intent);
                     }
                 }
         );
-      //  showTimePickerDialog();
+
         timeb.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -121,36 +122,6 @@ public class AppointmentActivity extends AppCompatActivity {
         }
     }
 
-  /*  public void showTimePickerDialog(){
-        timeb.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        showDialog(DIALOG_ID);
-                    }
-                }
-        );
-    }*/
 
-    //@Override
-   /* protected Dialog onCreateDialog(int id) {
-        if(id==DIALOG_ID){
-           return new TimePickerDialog(AppointmentActivity.this,kTimepickerListner,hour,minute,false);
-
-        }
-        return  null;
-    }*/
-
-  /*  protected TimePickerDialog.OnTimeSetListener kTimepickerListner=
-            new TimePickerDialog.OnTimeSetListener() {
-                @Override
-                public void onTimeSet(TimePicker view, int hourOfDay, int minutee) {
-                    hour = hourOfDay;
-                    minute = minutee;
-                    timee = hour+":"+minute;
-                    time.setText(timee);
-
-                }
-            };*/
 
 }

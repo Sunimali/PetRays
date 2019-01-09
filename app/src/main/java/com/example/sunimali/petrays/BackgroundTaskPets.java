@@ -145,6 +145,48 @@ public class BackgroundTaskPets extends AsyncTask<String,Void,String> {
                 e.printStackTrace();
             }
 
+
+        }
+        if(method.equals("appointment")){
+            String time = params[1];
+            String date = params[2];
+            String address = params[3];
+            String type = params[4];
+            String desc = params[5];
+            String pet_owner_id = params[6];
+
+            try {
+                //make coection
+                URL url = new URL(netConstants.URL_APPOINTMENT);
+                HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setDoOutput(true);
+                OutputStream OS = httpURLConnection.getOutputStream();
+                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(OS,"UTF-8"));
+
+                //parse data
+                String data = URLEncoder.encode("time", "UTF-8") + "=" + URLEncoder.encode(time, "UTF-8") + "&" +
+                        URLEncoder.encode("date", "UTF-8") + "=" + URLEncoder.encode(date, "UTF-8") + "&" +
+                        URLEncoder.encode("address", "UTF-8") + "=" + URLEncoder.encode(address, "UTF-8") + "&" +
+                        URLEncoder.encode("type", "UTF-8") + "=" + URLEncoder.encode(type, "UTF-8") + "&" +
+                        URLEncoder.encode("desc", "UTF-8") + "=" + URLEncoder.encode(desc, "UTF-8") + "&" +
+                        URLEncoder.encode("pet_owner_id", "UTF-8") + "=" + URLEncoder.encode(pet_owner_id, "UTF-8");
+
+
+                bufferedWriter.write(data);
+                bufferedWriter.flush();
+                bufferedWriter.close();
+                OS.close();
+                InputStream inputStream = httpURLConnection.getInputStream();
+                inputStream.close();
+
+                return "Appontment request sent..!!";
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
         return null;
@@ -158,9 +200,6 @@ public class BackgroundTaskPets extends AsyncTask<String,Void,String> {
     @Override
     protected void onPostExecute(String result) {
         Toast.makeText(context,result,Toast.LENGTH_SHORT).show();
-        Toast.makeText(context,"sunimali",Toast.LENGTH_SHORT).show();
-
-
 
     }
 }

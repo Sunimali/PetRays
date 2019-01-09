@@ -4,66 +4,70 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AppointmentActivity">
+    tools:context=".AppointmentActivity"
+    tools:layout_editor_absoluteY="25dp">
 
     <TextView
         android:id="@+id/textViewTime"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="17dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView27"
+        android:layout_height="13dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textViewtime"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/buttonTime"
-        app:layout_constraintTop_toBottomOf="@+id/calendarView" />
+        app:layout_constraintStart_toEndOf="@+id/buttonTime" />
 
     <Button
-        android:id="@+id/buttonsend"
+        android:id="@+id/buttonnsend"
         android:layout_width="368dp"
         android:layout_height="0dp"
         android:layout_marginBottom="16dp"
-        android:text="Send"
+        android:text="Next"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/buttonloca"
         app:layout_constraintStart_toEndOf="@+id/buttonloca"
-        app:layout_constraintTop_toBottomOf="@+id/textViewtime"
+        app:layout_constraintTop_toBottomOf="@+id/buttonloca"
         tools:textAllCaps="?android:attr/windowOverscan" />
 
     <TextView
         android:id="@+id/textViewLocation"
         android:layout_width="0dp"
         android:layout_height="20dp"
-        android:layout_marginEnd="17dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView42"
+        android:layout_marginTop="54dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="54dp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonnsend"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/buttonloca"
-        app:layout_constraintTop_toBottomOf="@+id/textView27" />
+        app:layout_constraintTop_toTopOf="@+id/buttonTime" />
 
     <Button
         android:id="@+id/buttonloca"
         android:layout_width="0dp"
-        android:layout_height="49dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="68dp"
         android:layout_marginEnd="18dp"
+        android:layout_marginBottom="20dp"
         android:text="select"
         android:textColor="@android:color/white"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textView42"
+        app:layout_constraintBottom_toTopOf="@+id/buttonnsend"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/textViewLocation"
         app:layout_constraintStart_toEndOf="@+id/textView42"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewtime"
         tools:textAllCaps="?android:attr/windowOverscan" />
 
     <Button
         android:id="@+id/buttonTime"
-        android:layout_width="137dp"
+        android:layout_width="0dp"
         android:layout_height="52dp"
-        android:layout_marginTop="4dp"
         android:layout_marginEnd="18dp"
-        android:layout_marginBottom="6dp"
         android:text="select"
         android:textColor="@android:color/white"
-        app:layout_constraintBottom_toTopOf="@+id/buttonloca"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView27"
         app:layout_constraintEnd_toStartOf="@+id/textViewTime"
         app:layout_constraintStart_toEndOf="@+id/textView27"
-        app:layout_constraintTop_toBottomOf="@+id/calendarView"
         tools:textAllCaps="?android:attr/windowOverscan" />
 
     <TextView
@@ -81,24 +85,24 @@
         android:id="@+id/calendarView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="3dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/textViewTime"
-        app:layout_constraintStart_toStartOf="@+id/textView26"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView27"
+        app:layout_constraintEnd_toEndOf="@+id/buttonTime"
+        app:layout_constraintStart_toEndOf="@+id/buttonTime"
         app:layout_constraintTop_toBottomOf="@+id/textView26" />
 
     <TextView
         android:id="@+id/textView27"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="189dp"
-        android:layout_marginBottom="19dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="198dp"
+        android:layout_marginBottom="39dp"
         android:text="Time"
-        app:layout_constraintBottom_toTopOf="@+id/textViewLocation"
+        app:layout_constraintBottom_toTopOf="@+id/textView42"
         app:layout_constraintEnd_toStartOf="@+id/textViewtime"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTime" />
+        app:layout_constraintTop_toBottomOf="@+id/calendarView" />
 
     <TextView
         android:id="@+id/textView42"
@@ -106,21 +110,21 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="9dp"
         android:layout_marginEnd="4dp"
-        android:layout_marginBottom="36dp"
+        android:layout_marginBottom="35dp"
         android:text="Address:"
-        app:layout_constraintBottom_toTopOf="@+id/buttonsend"
+        app:layout_constraintBottom_toTopOf="@+id/buttonnsend"
         app:layout_constraintEnd_toStartOf="@+id/buttonloca"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewLocation" />
+        app:layout_constraintTop_toBottomOf="@+id/textView27" />
 
     <TextView
         android:id="@+id/textViewtime"
-        android:layout_width="105dp"
-        android:layout_height="40dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginTop="382dp"
-        android:layout_marginEnd="17dp"
-        android:layout_marginBottom="83dp"
-        app:layout_constraintBottom_toTopOf="@+id/buttonsend"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="14dp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonloca"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView27"
         app:layout_constraintTop_toTopOf="parent" />
