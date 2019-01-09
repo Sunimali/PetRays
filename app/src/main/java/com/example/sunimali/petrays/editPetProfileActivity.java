@@ -68,6 +68,9 @@ public class editPetProfileActivity extends AppCompatActivity{
         BackgroundTaskPets backgroundTaskPets = new BackgroundTaskPets(this);
         backgroundTaskPets.execute(method,petOwnerID,name,age,weight);
 
+        finish();
+        startActivity(new Intent(editPetProfileActivity.this,deleteViewEditPetProfileActivity.class));
+
     }
 
     public void getData(){

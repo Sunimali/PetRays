@@ -40,7 +40,7 @@ public class BackgroundTaskPets extends AsyncTask<String,Void,String> {
             String weight = params[3];
             String species = params[4];
             String colour = params[5];
-            String image = params[6];
+           // String image = params[6];
             String pet_owner_id = params[7];
 
             try {
@@ -58,7 +58,7 @@ public class BackgroundTaskPets extends AsyncTask<String,Void,String> {
                         URLEncoder.encode("weight", "UTF-8") + "=" + URLEncoder.encode(weight, "UTF-8") + "&" +
                         URLEncoder.encode("species", "UTF-8") + "=" + URLEncoder.encode(species, "UTF-8") + "&" +
                         URLEncoder.encode("colour", "UTF-8") + "=" + URLEncoder.encode(colour, "UTF-8") + "&" +
-                        URLEncoder.encode("image", "UTF-8") + "=" + URLEncoder.encode(image, "UTF-8") + "&" +
+                       // URLEncoder.encode("image", "UTF-8") + "=" + URLEncoder.encode(image, "UTF-8") + "&" +
                         URLEncoder.encode("pet_owner_id", "UTF-8") + "=" + URLEncoder.encode(pet_owner_id, "UTF-8");
 
 
@@ -159,6 +159,8 @@ public class BackgroundTaskPets extends AsyncTask<String,Void,String> {
     protected void onPostExecute(String result) {
         Toast.makeText(context,result,Toast.LENGTH_SHORT).show();
         Toast.makeText(context,"sunimali",Toast.LENGTH_SHORT).show();
+
+
 
     }
 }

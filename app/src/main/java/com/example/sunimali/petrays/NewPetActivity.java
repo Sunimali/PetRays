@@ -82,7 +82,7 @@ public class NewPetActivity extends AppCompatActivity {
         String weight = editTextweight.getText().toString().trim();
         String specie = spinnerSpecies.getSelectedItem().toString().trim();
         String colour = editTextColour.getText().toString().trim();
-        //dp = imageToString(bitmap);
+       // dp = imageToString(bitmap);
 
         //create pet
         Pet p = new Pet(name,age,specie,colour,dp,weight);
@@ -98,8 +98,8 @@ public class NewPetActivity extends AppCompatActivity {
         bp.execute(Method,p.getAge(),p.getName(),p.getWeight(),p.getSpecie(),colour,p.getDp(),petOwnerID);
 
         //go back to my pets
-        finish();
-        startActivity(new Intent(NewPetActivity.this,MyPetsActivity.class));
+
+        //startActivity(new Intent(NewPetActivity.this,MyPetsActivity.class));
 
 
 

@@ -3,6 +3,7 @@
     <string name="title_activity_sign_in">SignInActivity</string>
     <string name="title_activity_welcome">WelcomeActivity</string>
     <string name="signup"><u>Sign Up</u>.</string>
+    <string name="api">AIzaSyBWMTV2hW9PErTSgoyd2ejA3-rDg2mT2Vk</string>
 
 
     <string name="title_activity_view_pet_profile">ViewPetProfile</string>

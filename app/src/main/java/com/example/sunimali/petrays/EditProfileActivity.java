@@ -73,10 +73,25 @@ public class EditProfileActivity extends AppCompatActivity {
 
         loadUserInformation();
 
+
+        //get petowner details from text fields
+
+
         //add clicklistener for update buttton
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                email = editTextemail.getText().toString().trim();
+                password = editTextpassword.getText().toString().trim();
+
+                p.setName(String.valueOf(editTextname.getText()));
+                p.setUserName(String.valueOf(editTextuserName.getText()));
+                p.setPassword(password);
+                p.setAddress(String.valueOf(editTextaddress.getText()));
+                p.setEmail(email);
+                p.setMobileNumber(String.valueOf(editTextmobile.getText()));
+
                 if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                     editTextemail.setError("Please enter a valid email");
                     editTextemail.requestFocus();
@@ -268,17 +283,11 @@ public class EditProfileActivity extends AppCompatActivity {
 
 
     public void updatePetOwnerDetails(){
-        //get petowner details from text fields
-        p.setName(String.valueOf(editTextname.getText()));
-        p.setUserName(String.valueOf(editTextuserName.getText()));
-        p.setPassword(String.valueOf(editTextpassword.getText()));
-        p.setAddress(String.valueOf(editTextaddress.getText()));
-        p.setEmail(String.valueOf(editTextemail.getText()));
-        p.setMobileNumber(String.valueOf(editTextmobile.getText()));
+
 
         String Method = "update";
         Backgroundtask backgroundTask = new Backgroundtask(this);
-        backgroundTask.execute(Method,p.getName(),p.getUserName(),p.getPassword(),p.getAddress(),p.getEmail(),p.getMobileNumber(),user.getUid());
+        backgroundTask.execute(Method,p.getName(),p.getUserName(),p.getPassword(),p.getAddress(),p.getEmail(),p.getMobileNumber(),petOwnerID);
 
     }
 

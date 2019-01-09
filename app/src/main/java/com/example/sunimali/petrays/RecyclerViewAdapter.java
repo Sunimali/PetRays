@@ -2,8 +2,12 @@ package com.example.sunimali.petrays;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +18,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -41,10 +46,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
 
+        Bitmap bitmap = StringToBitMap(mImages.get(position));
+
+
         Glide.with(mContext)
-                .asBitmap()
-                .load(mImages.get(position))
+                .asBitmap().load(bitmap)
                 .into(holder.image);
+
+
 
         holder.imageName.setText(mImageNames.get(position));
 
@@ -80,6 +89,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             image = itemView.findViewById(R.id.image);
             imageName = itemView.findViewById(R.id.image_name);
             parentLayout = itemView.findViewById(R.id.parent_layout);
+        }
+    }
+
+    public Bitmap StringToBitMap(String encodedString){
+        try{
+            byte [] encodeByte=Base64.decode(encodedString,Base64.DEFAULT);
+            Bitmap bitmap=BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+            return bitmap;
+        }catch(Exception e){
+            e.getMessage();
+            return null;
         }
     }
 }

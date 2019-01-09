@@ -106,6 +106,7 @@ public class SetProfileActivity extends AppCompatActivity {
                 //startActivity(new Intent(SetProfileActivity.this,ProfileActivity.class));
                 Intent intent = new Intent(SetProfileActivity.this, ProfileActivity.class);
                 intent.putExtra("mobile", mobile);
+                netConstants.DP = imageToString(bitmap);
                 p.add(imageToString(bitmap));
                 intent.putStringArrayListExtra("petowner", p);
                 startActivity(intent);
@@ -153,9 +154,7 @@ public class SetProfileActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         Intent camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                        //files = getFile();
-                        //photopath = Uri.fromFile(files);
-                        //camera.putExtra(MediaStore.EXTRA_OUTPUT, photopath);
+
                         startActivityForResult(camera,CAM_REQUEST);
                     }
                 }

@@ -42,15 +42,13 @@ public class MyPetsActivity extends AppCompatActivity {
 
     private ArrayList<String> mNames = new ArrayList<>();
     private ArrayList<String> mImageUrls = new ArrayList<>();
-   // RecyclerView recyclerView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_pets);
-        //LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        //recyclerView = findViewById(R.id.recycleViewForPets);
-       // recyclerView.setLayoutManager(layoutManager);
+
 
         //get the views
         addNewPet = (FloatingActionButton)findViewById(R.id.floatingActionButtonAddNewPet);
@@ -66,14 +64,6 @@ public class MyPetsActivity extends AppCompatActivity {
         //get all dogs profile pictures and names
         getDogDpsAndNames();
 
-       /* recyclerView.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        startActivity(new Intent(MyPetsActivity.this,deleteViewEditPetProfileActivity.class));
-                    }
-                }
-        );*/
     }
 
     public void getDogDpsAndNames(){
@@ -90,17 +80,6 @@ public class MyPetsActivity extends AppCompatActivity {
 
     }
 
-    /*public void initRecycleView(){
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        RecyclerView recyclerView = findViewById(R.id.recycleViewForPets);
-       recyclerView.setLayoutManager(layoutManager);
-        Toast.makeText(this,name[0],Toast.LENGTH_LONG).show();
-        petsNames = new ArrayList<String>(Arrays.asList(name));
-        petsDP = new ArrayList<String>(Arrays.asList(name));
-        RecyclerViewAdapterH adapter = new RecyclerViewAdapterH(petsDP,petsNames,this);
-        recyclerView.setAdapter(adapter);
-    }*/
     private void initRecyclerView(){
 
         RecyclerView recyclerView = findViewById(R.id.recycleViewForPets);
@@ -206,7 +185,7 @@ public class MyPetsActivity extends AppCompatActivity {
 
 
             }
-            //printdata(name[0]);
+            printdata(image[0]);
             initRecyclerView();
 
         }

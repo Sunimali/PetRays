@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -56,7 +57,9 @@ public class ProfileActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     DatabaseReference databasePetOwners;
     FirebaseUser user;
-    String ID,ownersName,ownerEmail;
+    String ID,ownersName,ownerEmail,petOwnerID;
+    String[] imagelist;
+
     ImageView dp;
 
 
@@ -85,23 +88,22 @@ public class ProfileActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
         databasePetOwners = FirebaseDatabase.getInstance().getReference("PetOwners");
-        user.getUid();
+        petOwnerID =  user.getUid();
 
         //set the textView
         name.setText(user.getDisplayName());
         email.setText(user.getEmail());
 
         //set image view
-        String id = user.getUid();
-        dpBackgroundTask dpbtask = new dpBackgroundTask(this);
-        dpbtask.execute(id);
-
+        if(netConstants.DP=="") {
+            dpBackgroundTask dpbtask = new dpBackgroundTask(this);
+            dpbtask.execute();
+        }
         //loadDetails();
 
         buttonHome.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // go to home page //
-                finish();
                 startActivity(new Intent(ProfileActivity.this,HomeActivity.class));
 
             }
@@ -110,7 +112,6 @@ public class ProfileActivity extends AppCompatActivity {
         editProfile.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // go to update page
-                finish();
                 startActivity(new Intent(ProfileActivity.this,EditProfileActivity.class));
 
             }
@@ -135,8 +136,9 @@ public class ProfileActivity extends AppCompatActivity {
                 Bitmap bitmap = (Bitmap) data.getExtras().get("data");
                 dp.setImageBitmap(bitmap);
                 String Method = "updateDP";
+                netConstants.DP = imageToString(bitmap);
                 Backgroundtask backgroundTask = new Backgroundtask(this);
-                backgroundTask.execute(Method,user.getUid(),imageToString(bitmap));
+                backgroundTask.execute(Method,petOwnerID,imageToString(bitmap));
             }
         }
     }
@@ -154,67 +156,85 @@ public class ProfileActivity extends AppCompatActivity {
     public class dpBackgroundTask extends AsyncTask<String,Void,String> {
 
         Context context;
-        String json_string;
+
         dpBackgroundTask(Context context){
+
             this.context = context;
         }
 
         @Override
         protected void onPreExecute() {
-            //progressDialog.show();
+            super.onPreExecute();
         }
 
         @Override
         protected String doInBackground(String... params) {
 
+            String viewProfileUrl = netConstants.URL_VIEWDP;
+            String id = petOwnerID;
+            String result = "";
+            try{
 
-                try{
-                    String viewProfileUrl = netConstants.URL_VIEWDP;
-                    String id = params[0];
-                    URL url = new URL(viewProfileUrl);
-                    HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-                    httpURLConnection.setRequestMethod("POST");
-                    httpURLConnection.setDoOutput(true);
-                    httpURLConnection.setDoInput(true);
-                    OutputStream outputStream = httpURLConnection.getOutputStream();
-                    BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
-                    String PostData = URLEncoder.encode("id","UTF-8") + "=" + URLEncoder.encode(id,"UTF-8");
+                URL url = new URL(viewProfileUrl+"&id="+petOwnerID);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                httpURLConnection.setRequestMethod("GET");
+                httpURLConnection.setDoOutput(true);
+                httpURLConnection.setDoInput(true);
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                outputStream.close();
 
-                    bufferedWriter.write(PostData);
-                    bufferedWriter.flush();
-                    bufferedWriter.close();
-                    outputStream.close();
+                InputStream inputStream = httpURLConnection.getInputStream();
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream,"iso-8859-1"));
 
-                    InputStream inputStream = httpURLConnection.getInputStream();
-                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream,"iso-8859-1"));
-                    String result = "";
-                    String line;
-                    while((line=bufferedReader.readLine())!=null){
-                        result+=line;
-                    }
-                    bufferedReader.close();
-                    inputStream.close();
-                    httpURLConnection.disconnect();
-                    return result;
-
-
-                }catch (MalformedURLException e){
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
+                String line;
+                while((line=bufferedReader.readLine())!=null){
+                    result+=line;
                 }
+                bufferedReader.close();
+                inputStream.close();
+                httpURLConnection.disconnect();
 
-            return null;
+                return result;
+
+
+            }catch (MalformedURLException e){
+                e.printStackTrace();
+            }catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return result;
         }
 
         @Override
         protected void onPostExecute(String result) {
 
-           // if(progressDialog.isShowing()) {
-               // progressDialog.dismiss();
-                json_string = result;
-//                getPhoto(json_string);
-          //  }
+            JSONArray jsonarray = null;
+            try {
+                jsonarray = new JSONArray(result);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            JSONObject jsonobject = null;
+
+            imagelist = new String[jsonarray.length()];
+
+            for (int i = 0; i <= jsonarray.length(); i++) {
+
+                try {
+                    jsonobject = jsonarray.getJSONObject(i);
+
+                    imagelist[i] = jsonobject.getString("imageurl");
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+
+            }
+            dp.setImageBitmap(StringToBitMap(imagelist[0]));
 
 
         }
@@ -224,24 +244,17 @@ public class ProfileActivity extends AppCompatActivity {
             super.onProgressUpdate(values);
         }
 
-        public void getPhoto(String json_string){
-            try {
-                JSONObject jsonObject = new JSONObject(json_string);
-                JSONArray jsonArray = jsonObject.getJSONArray("server_response");
-                int count = 0;
-                String image = null;
-                while(count<jsonArray.length()){
-                    JSONObject jo = jsonArray.getJSONObject(count);
-                    image = jo.getString("image");
 
-                }
-                //convert string to bitmap
-                byte [] encodeByte=Base64.decode(image,Base64.DEFAULT);
-                Bitmap bitmap=BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
-                dp.setImageBitmap(bitmap);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+    }
+
+    public Bitmap StringToBitMap(String encodedString){
+        try{
+            byte [] encodeByte=Base64.decode(encodedString,Base64.DEFAULT);
+            Bitmap bitmap=BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+            return bitmap;
+        }catch(Exception e){
+            e.getMessage();
+            return null;
         }
     }
 
